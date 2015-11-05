@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace FoodnStuff.Model
@@ -16,9 +17,9 @@ namespace FoodnStuff.Model
 
         public Database()
         {
-            projectPath = @"C:\Users\nguyngo2\Downloads\DatabaseExample";
+            projectPath = @"C:\Users\Anakom\Source\Repos\Food-n-Stuff\FoodnStuff\";
             connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
-                 @"Data Source = " + projectPath + @"\Data\CustomerOrders2014.mdb;";
+                 @"Data Source = " + projectPath + @"\Data\FoodnStuff.mdb;";
             //OleDbConnection requires namespace System.Data.OleDb
             myConnection = new OleDbConnection();
             myConnection.ConnectionString = connstr;
