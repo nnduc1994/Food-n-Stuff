@@ -12,11 +12,10 @@ namespace TestApplication
     {
         static void Main(string[] args)
         {
-            //string a = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("\\bin\\Debug","");
-            string Alreadypassword = PasswordHash.CreateHash("Hello this is a test");
-            bool check = PasswordHash.ValidatePassword("Hello this is a test",Alreadypassword);
-            Console.WriteLine(check);
-            Console.ReadLine();
+
+            RecipeManagement.CreateIngredient("Garlic", "Stinky");
+            RecipeManagement.CreateRecipe("Casserole", "Cook it", 1);
+            RecipeManagement.AddIngredientToRecipe("Garlic", 2, 1, 1);
         }
     }
 }
