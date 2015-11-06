@@ -18,5 +18,5 @@ The puprpose of the system is become an usefull assiatant for home cook with the
   
 More information about the feature can be found on this mindmap : https://www.text2mindmap.com/gAh3LTD?controller=frontpage&method=index&map=gAh3LTD
 
-For teachnical aspect, the system is implement by using ASP.net 4.5 Webform. Database enginen is Microsoft Access at the initial
+For teachnical aspect, the system is implement by using ASP.net 4.5 Webform. Database engine is Microsoft Access at the initial
 phase (may change later)
