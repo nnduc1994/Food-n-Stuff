@@ -35,7 +35,13 @@ namespace FoodnStuff.Model
             string command = "INSERT INTO UserTable (Name,UserName,Email,Pass) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "');";
             myDatabase.ExcuteNonQuery(command);
         }
-        public void EditProfile() { }
+        public void EditProfile(string id,string Name, string UserName, string Email, string PassWord) {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string Alreadypassword = PasswordHash.CreateHash(PassWord);
+            string command = "UPDATE UserTable SET Name='" + Name + ",UserName='" + UserName + ",Email='"+Email+ ",Pass='" + PassWord+"' WHERE ID ='" + id+"';";
+            myDatabase.ExcuteNonQuery(command);
+        }
         public List<User> GetUser()
         {
             List<User> userList = new List<User>();
