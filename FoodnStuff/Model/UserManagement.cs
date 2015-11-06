@@ -8,8 +8,15 @@ namespace FoodnStuff.Model
 {
     public class UserManagement
     {
-        public void Register(string inputUserName, string inputPassWord) { }
-        public void Login(string Name, string UserName, string Email, string PassWord) { }
+        public void Login(string inputUserName, string inputPassWord) { }
+        public void Register(string Name, string UserName, string Email, string PassWord)
+        {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string Alreadypassword = PasswordHash.CreateHash(PassWord);
+            string command = "INSERT INTO UserTable (Name,UserName,Email,Pass) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "');";
+            myDatabase.ExcuteNonQuery(command);
+        }
         public void EditProfile() { }
         public List<User> GetUser()
         {
