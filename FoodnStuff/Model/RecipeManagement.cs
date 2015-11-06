@@ -40,9 +40,28 @@ namespace FoodnStuff.Model
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
-                string IngredientID = reader.ToString();
+                int IngredientID = Convert.ToInt32(reader["ID"].ToString());
                 command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + RecipeID + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
+            }
+            else
+            {
+                CreateIngredient(Name, "");
+                //string command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
+                string command = "SELECT ID FROM Ingredient";
+
+                myDatabase.ExcuteQuery(command);
+                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                bool EOF = reader.Read();
+                int IngredientID = 0;
+
+                if (EOF) {
+                    IngredientID++;
+                    reader.Read();
+                }
+                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + (IngredientID + 1) + "','" + RecipeID + "','" + UnitID + "');";
+                myDatabase.ExcuteNonQuery(command);
+
             }
         }
         
