@@ -3,12 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using FoodnStuff.Model;
+
 
 namespace FoodnStuff.Model
 {
     public class UserManagement
     {
-        public void Login(string inputUserName, string inputPassWord) { }
+        public string Login(string inputUserName, string inputPassWord) {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM UserTable Where UserName='" + inputUserName + "'";
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            string name = reader["Name"].ToString();
+            string hashedPass = reader["Pass"].ToString();
+            string id = "0";
+            if (PasswordHash.ValidatePassword(inputPassWord, hashedPass) == true) {
+                id =  reader["ID"].ToString();
+            }
+            return id;
+            
+        }
         public void Register(string Name, string UserName, string Email, string PassWord)
         {
             Database myDatabase = new Database();
