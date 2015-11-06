@@ -34,6 +34,9 @@ namespace FoodnStuff.Model
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
+            
+            
+            //If ingredient available, take ingredient ID 
             if (CheckIngredientAvailability(Name))
             {
                 string command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
@@ -44,10 +47,12 @@ namespace FoodnStuff.Model
                 command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + RecipeID + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
             }
+            // If not available, create a new Ingredient 
             else
             {
+                //Create a new Ingredient here
                 CreateIngredient(Name, "");
-                //string command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
+
                 string command = "SELECT ID FROM Ingredient";
 
                 myDatabase.ExcuteQuery(command);
