@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Shared/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="FoodnStuff.View.UserManagement.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Shared/Site1.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="FoodnStuff.View.UserManagement.Register" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6 sub-container">
-            <form id="form2" runat="server">
-                <h1>LOGIN</h1>
+            <form id="form1" runat="server">
+                <h1>REGISTER</h1>
                 <hr />
                 <br />
                 <div class="form-group">
@@ -21,15 +21,35 @@
                     <br />
                     <div class="row">
                         <div class="col-md-3">
+                            <label>Name:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="TextBox2" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <!--end div row Name -->
+                    <br />
+                     <div class="row">
+                        <div class="col-md-3">
+                            <label>Email:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="TextBox3" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <!--end div row Email -->
+                    <br />
+                     <div class="row">
+                        <div class="col-md-3">
                             <label>Password:</label>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="TextBox2" runat="server" type="password" class="form-control"></asp:TextBox>
+                            <asp:TextBox ID="TextBox4" runat="server" class="form-control" type="password"></asp:TextBox>
                         </div>
                     </div>
-                    <!--end div row password -->
+                    <!--end div row Password -->
                     <br />
-                    <asp:Button ID="Button1" runat="server" Text="Login" class="btn btn-lg btn-danger" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button1" runat="server" Text="Register" class="btn btn-lg btn-danger" OnClick="Button1_Click1" />
                 </div>
                 <!--end div form-group-->
             </form>
@@ -44,9 +64,9 @@
         }
           
            .container {
-            height: 100%;
-            padding-top: 5%;
-            
+         
+           padding-top: 10%;
+            padding-bottom: 5%;
         }
         .sub-container {
             background-color:white;

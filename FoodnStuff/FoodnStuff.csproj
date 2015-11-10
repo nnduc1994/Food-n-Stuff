@@ -82,6 +82,7 @@
   <ItemGroup>
     <Content Include="Data\FoodnStuff.mdb" />
     <Content Include="View\UserManagement\Login.aspx" />
+    <Content Include="View\UserManagement\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="View\UserManagement\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserManagement\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserManagement\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

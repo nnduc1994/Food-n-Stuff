@@ -22,7 +22,8 @@
     </div>
     <style>
         .container {
-            padding-top: 15%;
+            padding-top: 10%;
+            padding-bottom: 5%;
         }
 
         h1 {
