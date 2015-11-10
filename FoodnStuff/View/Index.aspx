@@ -16,7 +16,7 @@
                 </div>
                 </div>
             </form>
-            </div><!--end div col-md-8 -->
+            </div><!--end div col-md-7 -->
         </div><!--end div row second ( text box and button) -->
 </div><!--end div row first -->
     </div>
