@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\FoodnStuff.mdb" />
+    <Content Include="View\UserManagement\Edit.aspx" />
     <Content Include="View\UserManagement\Login.aspx" />
     <Content Include="View\UserManagement\Register.aspx" />
     <Content Include="Web.config" />
@@ -104,6 +105,13 @@
     <Compile Include="Model\RecipeManagement.cs" />
     <Compile Include="Model\UserManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\UserManagement\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserManagement\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\UserManagement\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

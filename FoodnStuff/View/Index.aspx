@@ -5,7 +5,7 @@
         <div class="row">
         <div class="col-md-offset-3 col-md-7">
         <h1><strong>Food n' Stuff</strong></h1>
-        <label>Where cooking never get bored</label>
+        <label>Where cooking never get boring</label>
         <div class="row">
             <form id="form1" runat="server">
                 <div class="form-group">
