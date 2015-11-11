@@ -12,6 +12,37 @@ namespace FoodnStuff.Model
 {
     public class UserManagement
     {
+
+        public bool CheckForUname(string uname)
+        {
+            bool contain = false;
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM UserTable Where UserName='" + uname + "'";
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            if (reader.HasRows == true)
+            {
+                contain = true;
+            }
+            return contain;
+        }
+
+        public bool CheckForEmail(string email)
+        {
+            bool contain = false;
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM UserTable Where Email='" + email + "'";
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            if (reader.HasRows == true)
+            {
+                contain = true;
+            }
+            return contain;
+        }
+
         public string Login(string inputUserName, string inputPassWord) {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -27,6 +58,7 @@ namespace FoodnStuff.Model
             return id;
             
         }
+       
         public void Register(string Name, string UserName, string Email, string PassWord)
         {
             Database myDatabase = new Database();
