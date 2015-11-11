@@ -13,6 +13,20 @@ namespace FoodnStuff.Model
     public class UserManagement
     {
 
+        public string getData(string field, string id) {
+            string data = "";
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM UserTable Where ID=" + id + "";
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            if (reader.HasRows == true)
+            {
+                data = reader[field].ToString();
+            }
+            return data;
+        }
+
         public bool CheckForUname(string uname)
         {
             bool contain = false;
@@ -45,21 +59,26 @@ namespace FoodnStuff.Model
 
         public string Login(string inputUserName, string inputPassWord) {
             Database myDatabase = new Database();
+            string id = "0";
             myDatabase.ReturnConnection();
             string command = "SELECT * FROM UserTable Where UserName='" + inputUserName + "'";
             var reader = myDatabase.ExcuteQuery(command);
             reader.Read();
-            string name = reader["Name"].ToString();
-            string hashedPass = reader["Pass"].ToString();
-            string id = "0";
-            if (PasswordHash.ValidatePassword(inputPassWord, hashedPass) == true) {
-                id =  reader["ID"].ToString();
+            if (reader.HasRows == true)
+            {
+                string name = reader["Name"].ToString();
+                string hashedPass = reader["Pass"].ToString();
+                
+                if (PasswordHash.ValidatePassword(inputPassWord, hashedPass) == true)
+                {
+                    id = reader["ID"].ToString();
+                }
             }
             return id;
             
         }
-       
-        public void Register(string Name, string UserName, string Email, string PassWord)
+
+        public void Register(string UserName,  string Name, string Email, string PassWord)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -70,9 +89,18 @@ namespace FoodnStuff.Model
         public void EditProfile(string id,string Name, string UserName, string Email, string PassWord) {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string Alreadypassword = PasswordHash.CreateHash(PassWord);
-            string command = "UPDATE UserTable SET Name='" + Name + ",UserName='" + UserName + ",Email='"+Email+ ",Pass='" + PassWord+"' WHERE ID ='" + id+"';";
-            myDatabase.ExcuteNonQuery(command);
+            string command;
+            if (PassWord == "")
+            {
+                command = "UPDATE UserTable SET Name='" + Name + "',UserName='" + UserName + "',Email='" + Email +  "' WHERE ID =" + id + ";";
+          
+                }
+            else {
+                string Alreadypassword = PasswordHash.CreateHash(PassWord);
+                command = "UPDATE UserTable SET Name='" + Name + "',UserName='" + UserName + "',Email='" + Email + "',Pass='" + Alreadypassword + "' WHERE ID =" + id + ";";
+          
+            }
+                myDatabase.ExcuteNonQuery(command);
         }
         public List<User> GetUser()
         {
