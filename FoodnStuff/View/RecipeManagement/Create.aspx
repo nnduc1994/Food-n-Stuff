@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <br />
-                    <asp:Button ID="Button1" runat="server" Text="Create Recipe" class="btn btn-lg btn-danger"  />
+                    <asp:Button ID="Button1" runat="server" Text="Create Recipe" class="btn btn-lg btn-danger" OnClick="Button1_Click"  />
                 </div>
                 <!--end div form-group-->
             </form>

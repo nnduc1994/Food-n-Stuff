@@ -17,7 +17,7 @@ namespace FoodnStuff.Model
 
         public Database()
         {
-            projectPath = @"C:\Users\caohoang\Source\Repos\Food-n-Stuff\FoodnStuff\";
+            projectPath = @"C:\Users\admin\Source\Repos\Food-n-Stuff\FoodnStuff\";
             connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
                  @"Data Source = " + projectPath + @"\Data\FoodnStuff.mdb;";
             //OleDbConnection requires namespace System.Data.OleDb

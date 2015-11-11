@@ -26,25 +26,49 @@ namespace FoodnStuff.Model
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "INSERT INTO Ingredient (Name, Description) VALUES ('" + Name + "','" + Description + "');";
+            string command = "SELECT ID FROM Ingredient";
+
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            bool EOF = reader.Read();
+            int IngredientID = 0;
+
+            if (EOF)
+            {
+                IngredientID++;
+                reader.Read();
+            }
+            command = "INSERT INTO Ingredient (ID, Name, Description) VALUES ('" + (IngredientID + 1) + "','" + Name + "','" + Description + "');";
             myDatabase.ExcuteNonQuery(command);
         }
 
-        public static void AddIngredientToRecipe(string Name, double amount, int RecipeID, int UnitID)
+        public static void AddIngredientToRecipe(string Name, double amount, int UnitID)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            
-            
+
+            string command = "SELECT ID FROM Recipe";
+
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader1 = myDatabase.ExcuteQuery(command);
+            bool EOF1 = reader1.Read();
+            int RecipeID = 0;
+
+            if (EOF1)
+            {
+                RecipeID++;
+                reader1.Read();
+            }
+
             //If ingredient available, take ingredient ID 
             if (CheckIngredientAvailability(Name))
             {
-                string command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
+                command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 int IngredientID = Convert.ToInt32(reader["ID"].ToString());
-                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + RecipeID + "','" + UnitID + "');";
+                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + (RecipeID + 1) + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
             }
             // If not available, create a new Ingredient 
@@ -53,7 +77,7 @@ namespace FoodnStuff.Model
                 //Create a new Ingredient here
                 CreateIngredient(Name, "");
 
-                string command = "SELECT ID FROM Ingredient";
+                command = "SELECT ID FROM Ingredient";
 
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
@@ -64,7 +88,7 @@ namespace FoodnStuff.Model
                     IngredientID++;
                     reader.Read();
                 }
-                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + (IngredientID + 1) + "','" + RecipeID + "','" + UnitID + "');";
+                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + (IngredientID + 1) + "','" + (RecipeID + 1) + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
 
             }
@@ -74,7 +98,19 @@ namespace FoodnStuff.Model
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "INSERT INTO Recipe (Name, Instruction, CreatedID) VALUES ('"+ Name + "','" + Instruction + "','" + creatorID +"');";
+            string command = "SELECT ID FROM Recipe";
+
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            bool EOF = reader.Read();
+            int RecipeID = 0;
+
+            if (EOF)
+            {
+                RecipeID++;
+                reader.Read();
+            }
+            command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID) VALUES ('"+ (RecipeID+1) + "','" + Name + "','" + Instruction + "','" + creatorID +"');";
             myDatabase.ExcuteNonQuery(command);
         }
     }

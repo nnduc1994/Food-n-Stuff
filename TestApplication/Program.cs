@@ -12,9 +12,9 @@ namespace TestApplication
     {
         static void Main(string[] args)
         {
-            RecipeManagement.CreateRecipe("Casserole", "Cook it", 1);
-            RecipeManagement.AddIngredientToRecipe("Garlic",2,11,1);
-            RecipeManagement.AddIngredientToRecipe("Onion", 3, 11, 1);
+            //RecipeManagement.CreateRecipe("Casserole", "Cook it", 1);
+            //RecipeManagement.AddIngredientToRecipe("Garlic", 2, 1);
+            //RecipeManagement.AddIngredientToRecipe("Onion", 4, 1);
         }
     }
 }
