@@ -28,6 +28,7 @@
                         </div>
                     </div>
                     <!--end div row password -->
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Check input Parameters" OnServerValidate="ValidatePass"></asp:CustomValidator>
                     <br />
                     <asp:Button ID="Button1" runat="server" Text="Login" class="btn btn-lg btn-danger" OnClick="Button1_Click"/>
                 </div>

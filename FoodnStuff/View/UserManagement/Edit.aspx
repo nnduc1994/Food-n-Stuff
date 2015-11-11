@@ -35,6 +35,9 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="TextBox3" runat="server" class="form-control"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="Add mail in correct format" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <br />
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Please, write another mail" OnServerValidate="ValidateEmail"></asp:CustomValidator>
                         </div>
                     </div>
                     <!--end div row Email -->
@@ -50,6 +53,7 @@
                     <!--end div row Password -->
                     <br />
                     <asp:Button ID="Button1" runat="server" Text="Update Info" class="btn btn-lg btn-danger" OnClick="Button1_Click1" />
+                    <asp:Button ID="Button2" runat="server" Text="LogOut" class="btn btn-lg btn-danger" OnClick="Button2_Click" />
                 </div>
                 <!--end div form-group-->
             </form>
