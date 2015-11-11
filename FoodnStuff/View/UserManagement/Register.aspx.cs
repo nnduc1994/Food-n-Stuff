@@ -23,9 +23,10 @@ namespace FoodnStuff.View.UserManagement
         protected void Button1_Click1(object sender, EventArgs e)
         {
             if (this.IsValid)
+            {
                 UM.Register(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text);
                 Server.Transfer("Login.aspx", true);
-           
+            }
         }
         protected void ValidateUname(object source, ServerValidateEventArgs args)
         {   
