@@ -15,6 +15,7 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator4" runat="server" ControlToValidate="TextBox1" ErrorMessage="Please, write another UserName" OnServerValidate="ValidateUname"></asp:CustomValidator>
                         </div>
                     </div>
                     <!--end div row username -->
@@ -25,6 +26,7 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="TextBox2" runat="server" class="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox2" ErrorMessage="Please, add your name here"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <!--end div row Name -->
@@ -35,6 +37,9 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="TextBox3" runat="server" class="form-control"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="TextBox3" ErrorMessage="Please, write another Email" OnServerValidate="ValidateEmail"></asp:CustomValidator>
+                            <br />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="Please, write Email in correct format" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <!--end div row Email -->
@@ -45,6 +50,7 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="TextBox4" runat="server" class="form-control" type="password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Please, write password"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <!--end div row Password -->
