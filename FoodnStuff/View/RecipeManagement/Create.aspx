@@ -21,45 +21,21 @@
                     <br />
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Ingredient 1 ( at the moment recipe only content 2 ingredient):</label>
+                            <label>Number of ingredient(s):</label>
                         </div>
-                        <div class="col-md-6">
-                            <asp:TextBox ID="TextBox2" runat="server" class="form-control"></asp:TextBox>
-                        </div>
-                    </div><!--end div row ingre1 -->
-                     <div class="row">
-                        <div class="col-md-5">
-                            <label>Ingre 1 amount:</label>
-                        </div>
-                        <div class="col-md-6">
-                            hard code at the moment unit will be pound
-                            <asp:TextBox ID="TextBox4" runat="server" class="form-control" ></asp:TextBox>
+                        <div class="col-md-2">
+                            <asp:TextBox ID="amount" runat="server" class="form-control" ></asp:TextBox>
+                        </div>      
+                        <div class="col-md-2">
+                            <p onclick="Add_Onclick()">Add</p>
                         </div>
                     </div>
-                    <!--end div row Unit -->
-                    
                     <br />
-                     <div class="row">
-                        <div class="col-md-5">
-                            <label>Ingredient 2 ( at the moment recipe only content 2 ingredient):</label>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:TextBox ID="TextBox3" runat="server" class="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-                    <!--end div row ingre2 -->
+                                            <input name="AmountOfIngredient" id="TotalNumberOfIngredient" type="hidden"/>
 
-                     <div class="row">
-                        <div class="col-md-5">
-                            <label>Ingre 2 amount:</label>
-                        </div>
-                        <div class="col-md-6">
-                            hard code at the moment unit will be pound
-                            <asp:TextBox ID="TextBox6" runat="server" class="form-control" ></asp:TextBox>
-                        </div>
+                    <div id="Ingredients-container">
                     </div>
                     <br />
-                    
                      <div class="row">
                         <div class="col-md-5">
                             <label>Instruction</label>
@@ -103,4 +79,62 @@
             font-family: 'Times New Roman', Times, serif;
         }
     </style>
+
+    <script>
+        function Add_Onclick() {
+           
+            var amountIngredients = document.getElementById("ContentPlaceHolder1_amount").value;
+            var container = document.getElementById("Ingredients-container");
+
+            var amountInput = document.getElementById("TotalNumberOfIngredient");
+            amountInput.value = amountIngredients;
+
+            container.innerHTML = "";
+            var title = document.createElement("h3");
+            title.textContent = "Ingredient(s)";
+            container.appendChild(title);
+            for (var i = 1; i <= amountIngredients; i++) {
+                var rowDiv = document.createElement("div");
+                rowDiv.style.cssText = "padding-bottom:2%;";
+                rowDiv.className = "row";
+                var divColMd5 = document.createElement("div");
+                divColMd5.className = "col-md-5";
+                var label = document.createElement("label");
+                label.textContent = "Ingredient Name:";
+                var divColMd5Second = document.createElement("div");
+                divColMd5Second.className = "col-md-6";
+                var textboxName = document.createElement("input");
+                textboxName.type = "text";
+                textboxName.className = "form-control";
+                textboxName.name = "IngredientName" + i;
+                divColMd5Second.appendChild(textboxName);
+                divColMd5.appendChild(label);
+                rowDiv.appendChild(divColMd5);
+                rowDiv.appendChild(divColMd5Second);
+
+
+                var rowDivSecond = document.createElement("div");
+                rowDivSecond.className = "row";
+                rowDivSecond.style.cssText = "padding-bottom:2%;";
+                rowDivSecond.className = "row";
+                var divColMd5Amount = document.createElement("div");
+                divColMd5Amount.className = "col-md-5";
+                var labelAmount = document.createElement("label");
+                labelAmount.textContent = "Amount:";
+                var divColMd5SecondAmount = document.createElement("div");
+                divColMd5SecondAmount.className = "col-md-6";
+                var textboxAmount= document.createElement("input");
+                textboxAmount.type = "text";
+                textboxAmount.className = "form-control";
+                textboxAmount.name = "IngredientAmount" + i;
+                divColMd5SecondAmount.appendChild(textboxAmount);
+                divColMd5Amount.appendChild(labelAmount);
+                rowDivSecond.appendChild(divColMd5Amount);
+                rowDivSecond.appendChild(divColMd5SecondAmount);
+
+                container.appendChild(rowDiv);
+                container.appendChild(rowDivSecond);
+            }
+        }
+    </script>
 </asp:Content>
