@@ -114,4 +114,22 @@ namespace FoodnStuff.Model
             myDatabase.ExcuteNonQuery(command);
         }
     }
+
+    //Business Object
+    public class Recipe {
+
+        public Recipe() {
+            IngredientList = new List<Ingredient>();
+        }
+        public string Name{get;set;}
+        public string AuthorName { get; set; }
+        public string AuthorId { get; set; }
+        public string Instruction { get; set; }
+        public List<Ingredient> IngredientList { get; set; }
+    }
+
+    public class Ingredient{
+         public string Name {get;set;}
+         public double Amount {get; set;}
+    }
 }
