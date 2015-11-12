@@ -39,6 +39,12 @@
                      <div class="row">
                         <div class="col-md-5">
                             <label>Instruction</label>
+                            <label>
+                            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                            </label>
+                            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-md-6">
            

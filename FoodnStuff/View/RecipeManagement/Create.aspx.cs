@@ -26,7 +26,7 @@ namespace FoodnStuff.View.RecipeManagement
                 }
             }
             double amount1 = Convert.ToDouble(TextBox4.Text);
-            double amount2 = Convert.ToDouble(TextBox6.Text);
+            double amount2 = Convert.ToDouble(TextBox9.Text);
 
             Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id);
             Model.RecipeManagement.AddIngredientToRecipe(TextBox2.Text, amount1, 1);

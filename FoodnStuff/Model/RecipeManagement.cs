@@ -20,7 +20,6 @@ namespace FoodnStuff.Model
                 return true;
             }
             else return false;
-            myDatabase.CloseConnection();
         }
 
         public static void CreateIngredient(string Name, string Description)
@@ -38,6 +37,9 @@ namespace FoodnStuff.Model
             {
                 idList.Add(Convert.ToInt32(reader["ID"]));
                 reader.Read();
+            }
+            if (idList.Count>0)
+            {
                 maxingredientID = idList.Max();
             }
             
@@ -48,7 +50,7 @@ namespace FoodnStuff.Model
 
         public static void AddIngredientToRecipe(string Name, double amount, int UnitID)
         {  
-            int maxrecipeID = 1;
+            int maxrecipeID = 0;
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
 
@@ -62,6 +64,9 @@ namespace FoodnStuff.Model
             {
                 idList1.Add(Convert.ToInt32(reader1["ID"]));
                 reader1.Read();
+            }
+            if (idList1.Count()>0)
+            {
                 maxrecipeID = idList1.Max();
             }
             
@@ -74,7 +79,7 @@ namespace FoodnStuff.Model
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 int IngredientID = Convert.ToInt32(reader["ID"].ToString());
-                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + maxrecipeID + "','" + UnitID + "');";
+                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + (maxrecipeID+1) + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
                 myDatabase.CloseConnection();
             }
@@ -83,23 +88,14 @@ namespace FoodnStuff.Model
             {
 
                 //Create a new Ingredient here
-                int maxingredientID = 0 ;
                 CreateIngredient(Name, "");
                 myDatabase.ReturnConnection();
-                command = "SELECT ID FROM Ingredient";
+                command = "SELECT ID FROM Ingredient Where Name ='" + Name + "';";
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
-                int EOF = reader.Depth;
-                List<int> idList = new List<int>();
-
-                if (EOF > 0) {
-                    idList.Add(Convert.ToInt32(reader["ID"]));
-                    reader.Read();
-                }
-                if (idList.Count() > 0) {
-                    maxingredientID = idList.Max();
-                }
-                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + (maxingredientID+1) + "','" + maxrecipeID + "','" + UnitID + "');";
+                reader.Read();
+                int IngredientID = Convert.ToInt32(reader["ID"].ToString());
+                command = "INSERT INTO RecipeIngredientAmount (Amount, IngredientID, RecipeID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + maxrecipeID + "','" + UnitID + "');";
                 myDatabase.ExcuteNonQuery(command);
                 myDatabase.CloseConnection();
 
@@ -121,9 +117,12 @@ namespace FoodnStuff.Model
             {
                 idList1.Add(Convert.ToInt32(reader1["ID"]));
                 reader1.Read();
+            }
+            if (idList1.Count() > 0)
+            {
                 maxrecipeID = idList1.Max();
-            }           
-            
+            }
+
             command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID) VALUES ('"+ (maxrecipeID+1) + "','" + Name + "','" + Instruction + "','" + creatorID +"');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
