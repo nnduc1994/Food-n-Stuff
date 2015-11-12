@@ -102,7 +102,7 @@
                 var label = document.createElement("label");
                 label.textContent = "Ingredient Name:";
                 var divColMd5Second = document.createElement("div");
-                divColMd5Second.className = "col-md-5";
+                divColMd5Second.className = "col-md-6";
                 var textboxName = document.createElement("input");
                 textboxName.type = "text";
                 textboxName.className = "form-control";
@@ -122,7 +122,7 @@
                 var labelAmount = document.createElement("label");
                 labelAmount.textContent = "Amount:";
                 var divColMd5SecondAmount = document.createElement("div");
-                divColMd5SecondAmount.className = "col-md-5";
+                divColMd5SecondAmount.className = "col-md-6";
                 var textboxAmount= document.createElement("input");
                 textboxAmount.type = "text";
                 textboxAmount.className = "form-control";
