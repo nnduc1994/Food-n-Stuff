@@ -91,7 +91,7 @@
 
             container.innerHTML = "";
             var title = document.createElement("h3");
-            title.textContent = "Ingrediet(s)";
+            title.textContent = "Ingredient(s)";
             container.appendChild(title);
             for (var i = 1; i <= amountIngredients; i++) {
                 var rowDiv = document.createElement("div");
