@@ -31,8 +31,9 @@
                         </div>
                     </div>
                     <br />
-                    <div id="Ingredients-container">
+                                            <input name="AmountOfIngredient" id="TotalNumberOfIngredient" type="hidden"/>
 
+                    <div id="Ingredients-container">
                     </div>
                     <br />
                      <div class="row">
@@ -81,8 +82,13 @@
 
     <script>
         function Add_Onclick() {
+           
             var amountIngredients = document.getElementById("ContentPlaceHolder1_amount").value;
             var container = document.getElementById("Ingredients-container");
+
+            var amountInput = document.getElementById("TotalNumberOfIngredient");
+            amountInput.value = amountIngredients;
+
             container.innerHTML = "";
             var title = document.createElement("h3");
             title.textContent = "Ingrediet(s)";
