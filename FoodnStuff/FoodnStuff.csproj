@@ -71,6 +71,7 @@
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="View\Index.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
+    <Content Include="View\RecipeManagement\View.aspx" />
     <Content Include="View\Shared\Site1.Master" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="View\RecipeManagement\Create.aspx.designer.cs">
       <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecipeManagement\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\RecipeManagement\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
