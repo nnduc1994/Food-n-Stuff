@@ -29,11 +29,11 @@
 <style>
     .grey-filter {
         background-color:rgba(19, 19, 19, 0.5);
-        min-height:100%;
+        min-height: 100%;
         min-width: 100%;
     }
     body {
-        background-image: url('../../Content/img/Image1.jpg');
+        background-image: url('../../Content/img/background.jpg');
         background-size:100% 100%;
         background-repeat: no-repeat;
         width:100%;
