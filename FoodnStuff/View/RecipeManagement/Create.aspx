@@ -34,7 +34,26 @@
                             </div>
                         </div>
                         <br />
+                          
+                        
                         <div class="row">
+                            <div class="col-md-5">
+                                 <button class="btn-danger btn-sm upload_btn" type="button" style="width:70%;"> Upload Photo</button>
+                                <input id="pictureUpload" name="UploadedFile" type='file' style=" display:none;" runat="server"/>
+            
+                            </div>
+                            <div class="col-md-6">
+                                 
+                                <output id="previewPicture">
+                                    <span>
+                                        <img class="thumb" src="../../Content/img/placeholder.jpg" />
+                                    </span>
+                                </output>
+                            </div>
+                        </div> <!--end div row for preview Picture -->
+                        <br />
+
+                           <div class="row">
                             <div class="col-md-5">
                                 <strong><label>Instruction</label></strong>
                             </div>
@@ -43,7 +62,8 @@
                                 <asp:TextBox ID="TextBox5" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
                         </div>
-                        <br />
+
+
                         <asp:Button ID="Button1" runat="server" Text="Create Recipe" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
                     </div>
                     <!--end div form-group-->
@@ -57,6 +77,7 @@
     <style>
         .btn-danger {
             background-color: #FD7E2D;
+       
         }
 
         .container {
@@ -86,9 +107,64 @@
             cursor:pointer;
         }
 
+        .thumb {
+        max-width: 100%;
+        max-height: 400px;
+        min-width: 100%;
+        min-height: 100%;
+        min-height:150px;
+    }
+
     </style>
 
     <script>
+
+        //Use for binding to button 
+        $('.upload_btn').bind("click", function () {
+            $('#ContentPlaceHolder1_pictureUpload').click();
+            document.getElementById('ContentPlaceHolder1_pictureUpload').addEventListener('change', handleFileSelect);
+        });
+
+        ///Use broswer local storage to display review picture
+        function handleFileSelect(evt) {
+            var files = evt.target.files;
+
+            var output = [];
+            for (var i = 0, f; f = files[i]; i++) {
+
+                // Only process image files.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        var span = document.createElement('span');
+                        span.innerHTML = ['<img class="thumb" s src="' + e.target.result + '"/>'];
+                        ///document.getElementById('previewPicture').replaceWith(span, null);
+                        replaceElement(span);
+                    };
+                })(f);
+                reader.readAsDataURL(f);
+
+            }
+
+        }
+
+        ///Replace Element by new Element
+        function replaceElement(replaceElement) {
+                var ParentElement = $("#previewPicture");
+                if (ParentElement.find("img").length > 0) {
+                    $("#previewPicture img:last-child").remove()
+                }
+                ParentElement.append(replaceElement);
+            }
+ 
+
+
+        ///Use for Ajax call
         var amountOfIngredient = 0;
         var a;
         function Add_Onclick() {
@@ -112,6 +188,7 @@
             textboxName.className = "form-control";
             textboxName.name = "IngredientName" + amountOfIngredient;
             textboxName.id = "IngredientName" + amountOfIngredient;
+            textboxName.setAttribute("autocomplete","off");
             textboxName.addEventListener("keydown", function () {
                 ingredientChange(this.value, amountOfIngredient);
             })
@@ -119,10 +196,15 @@
             var ajaxDiv = document.createElement("div");
             ajaxDiv.id = "ajaxDIv" + amountOfIngredient;
 
-            //Out focus remove suggestion
-            textboxName.addEventListener("focusout", function () {
-                ajaxDiv.className = "hidden-sm hidden-xs hidden-md hidden-lg";
-            })
+            ////Out focus remove suggestion
+            //textboxName.addEventListener("focusout", function () {
+            //    ajaxDiv.style.visibility = "hidden";
+               
+            //})
+            //textboxName.addEventListener("focus", function () {
+            //    ajaxDiv.style.visibility = "visible";
+
+            //})
 
             divColMd5Second.appendChild(textboxName);
 
@@ -208,7 +290,6 @@
                         var textbox = document.getElementById("IngredientName" + num);
                         textbox.value = this.value;
                         document.getElementById("ajaxDIv" + num).innerHTML = "";
-                       
                     });
                     ajaxSelect.appendChild(ajaxOption);
                 }
@@ -218,5 +299,8 @@
             }
             return ajaxDiv;
         }
+
+
+
     </script>
 </asp:Content>

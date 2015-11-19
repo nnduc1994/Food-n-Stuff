@@ -9,6 +9,8 @@
     <meta  name="author" content="Winning Team - LAMK"/>
     <!-- Bootstrap core CSS -->
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
+     <!--jquery min-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

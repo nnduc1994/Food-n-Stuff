@@ -157,7 +157,34 @@ namespace FoodnStuff.Model
             return A;
                 
         }
-        
+  
+        public static void AddRecipePicture(string path) {
+            int maxRecipeID = 0;
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+
+            string command = "SELECT ID FROM Recipe";
+
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader1 = myDatabase.ExcuteQuery(command);
+            bool EOF1 = reader1.Read();
+            List<int> idList1 = new List<int>();
+            while (EOF1)
+            {
+                idList1.Add(Convert.ToInt32(reader1["ID"]));
+                EOF1 = reader1.Read();
+            }
+            if (idList1.Count() > 0)
+            {
+                maxRecipeID = idList1.Max();
+            }
+
+
+            command = "INSERT INTO RecipeImage (Path, RecipeID) VALUES ('" + path  + "','" + (maxRecipeID + 1)  + "');";
+            myDatabase.ExcuteNonQuery(command);
+            myDatabase.CloseConnection();
+
+        }
     }
     
 

@@ -66,6 +66,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\background.jpg" />
     <Content Include="Content\img\Image1.jpg" />
+    <Content Include="Content\img\placeholder.jpg" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
@@ -156,7 +157,9 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\user_upload\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

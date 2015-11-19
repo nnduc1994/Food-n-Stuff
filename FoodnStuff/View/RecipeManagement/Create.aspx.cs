@@ -11,7 +11,7 @@ namespace FoodnStuff.View.RecipeManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -44,6 +44,15 @@ namespace FoodnStuff.View.RecipeManagement
                     }
                 }
 
+                if (Request.Files != null) {
+                    HttpPostedFile file = Request.Files[0];
+                    string pictureName = id.ToString() + "1" + System.IO.Path.GetFileName(file.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Content/user_upload"), pictureName);
+                    file.SaveAs(path);
+
+                    //Write to datbase
+                    Model.RecipeManagement.AddRecipePicture(path);
+                }
             }
         }
 
