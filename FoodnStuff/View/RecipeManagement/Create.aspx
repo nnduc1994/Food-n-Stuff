@@ -52,8 +52,7 @@
             <!--end div col-md-7-->
         </div>
     </div>
-    <label id="testLabel"></label>
-    <button onclick="ingredientChange('chick')">Click</button>
+ 
     <!--end div row first -->
     <style>
         .btn-danger {
@@ -119,6 +118,11 @@
             //Ajax list come here
             var ajaxDiv = document.createElement("div");
             ajaxDiv.id = "ajaxDIv" + amountOfIngredient;
+
+            //Out focus remove suggestion
+            textboxName.addEventListener("focusout", function () {
+                ajaxDiv.className = "hidden-sm hidden-xs hidden-md hidden-lg";
+            })
 
             divColMd5Second.appendChild(textboxName);
 
@@ -188,26 +192,30 @@
         function createSuggestionHTML(list, num) {
             //Ajax list come here
             var ajaxDiv = document.createElement("div");
-            ajaxDiv.style.cssText ="border:solid 1px;"
-            var ajaxSelect = document.createElement("textbox");
-            ajaxSelect.style.cssText = "width: 100%;"
 
-            //Create option
-            for (var a = 0; a < list.length; a++) {
-                var ajaxOption = document.createElement("option");
-                ajaxOption.className = "ajaxOption";
-                ajaxOption.value = list[a];
-                ajaxOption.innerHTML = list[a];
-                ajaxOption.addEventListener("click", function () {
-                   var textbox = document.getElementById("IngredientName" +num);
-                   textbox.value = this.value;
-                   document.getElementById("ajaxDIv" + num).innerHTML = "";
-                });
-                ajaxSelect.appendChild(ajaxOption);
+            if (list.length > 0) {
+                ajaxDiv.style.cssText = "border:solid 1px;"
+                var ajaxSelect = document.createElement("textbox");
+                ajaxSelect.style.cssText = "width: 100%;"
+
+                //Create option
+                for (var a = 0; a < list.length; a++) {
+                    var ajaxOption = document.createElement("option");
+                    ajaxOption.className = "ajaxOption";
+                    ajaxOption.value = list[a];
+                    ajaxOption.innerHTML = list[a];
+                    ajaxOption.addEventListener("click", function () {
+                        var textbox = document.getElementById("IngredientName" + num);
+                        textbox.value = this.value;
+                        document.getElementById("ajaxDIv" + num).innerHTML = "";
+                       
+                    });
+                    ajaxSelect.appendChild(ajaxOption);
+                }
+
+                //append select to ajaxDiv
+                ajaxDiv.appendChild(ajaxSelect);
             }
-
-            //append select to ajaxDiv
-            ajaxDiv.appendChild(ajaxSelect);
             return ajaxDiv;
         }
     </script>
