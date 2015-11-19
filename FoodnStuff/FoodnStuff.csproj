@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1-beta2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,6 +77,7 @@
     <Content Include="View\Index.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
     <Content Include="View\RecipeManagement\RecipeViewer.aspx" />
+    <Content Include="View\Shared\AjaxIngredientSuggestion.aspx" />
     <Content Include="View\Shared\Site1.Master" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
@@ -110,6 +115,13 @@
     </Compile>
     <Compile Include="View\RecipeManagement\RecipeViewer.aspx.designer.cs">
       <DependentUpon>RecipeViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\AjaxIngredientSuggestion.aspx.cs">
+      <DependentUpon>AjaxIngredientSuggestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Shared\AjaxIngredientSuggestion.aspx.designer.cs">
+      <DependentUpon>AjaxIngredientSuggestion.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

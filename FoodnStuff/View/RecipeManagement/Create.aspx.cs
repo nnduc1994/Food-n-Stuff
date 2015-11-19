@@ -16,7 +16,7 @@ namespace FoodnStuff.View.RecipeManagement
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int id = 1;
+            int id;
             if (Request.Cookies["UserLogIn"] != null)
             {
                 if (Request.Cookies["UserLogIn"]["UID"] != null)
@@ -25,12 +25,15 @@ namespace FoodnStuff.View.RecipeManagement
                     id = Convert.ToInt32(ID);
                 }
             }
-            double amount1 = Convert.ToDouble(TextBox4.Text);
-            double amount2 = Convert.ToDouble(TextBox9.Text);
+            else {
+                id = 0;
+            }
 
-            Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id);
-            Model.RecipeManagement.AddIngredientToRecipe(TextBox2.Text, amount1, 1);
-            Model.RecipeManagement.AddIngredientToRecipe(TextBox3.Text, amount2, 1);
+        }
+
+        protected void TextBox9_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

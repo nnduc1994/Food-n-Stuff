@@ -15,6 +15,9 @@ namespace TestApplication
             //RecipeManagement.CreateRecipe("Casserole", "Cook it", 1);
             //RecipeManagement.AddIngredientToRecipe("Garlic", 2, 1);
             //RecipeManagement.AddIngredientToRecipe("Onion", 4, 1);
+
+            List<string> a = RecipeManagement.GetAvailableIngredientByName("chic");
+
         }
     }
 }
