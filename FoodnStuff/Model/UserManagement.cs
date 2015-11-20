@@ -88,25 +88,9 @@ namespace FoodnStuff.Model
             string command = "INSERT INTO UserTable (Name,UserName,Email,Pass,RoleID) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "','2');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
-            CreateStorage(UserName);
+            StorageManagement.CreateStorage(UserName);
         }
-        public void CreateStorage(string uname)
-        {
-            string id = "";
-            Database myDatabase = new Database();
-            myDatabase.ReturnConnection();
-            string command = "SELECT * FROM UserTable Where UserName='" + uname + "'";
-            var reader = myDatabase.ExcuteQuery(command);
-            reader.Read();
-            if (reader.HasRows == true)
-            {
-                id = reader["ID"].ToString();
-            }
-            command = "INSERT INTO Storage (Name,OwnerId) VALUES ('" + uname + "Storage" + "','" + id + "');";
-            myDatabase.ExcuteNonQuery(command);
-
-        }
-        public void EditProfile(string id, string Name, string UserName, string Email, string PassWord)
+               public void EditProfile(string id, string Name, string UserName, string Email, string PassWord)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
