@@ -13,7 +13,8 @@ namespace FoodnStuff.Model
     public class UserManagement
     {
 
-        public string getData(string field, string id) {
+        public string getData(string field, string id)
+        {
             string data = "";
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -57,7 +58,8 @@ namespace FoodnStuff.Model
             return contain;
         }
 
-        public string Login(string inputUserName, string inputPassWord) {
+        public string Login(string inputUserName, string inputPassWord)
+        {
             Database myDatabase = new Database();
             string id = "0";
             myDatabase.ReturnConnection();
@@ -68,39 +70,43 @@ namespace FoodnStuff.Model
             {
                 string name = reader["Name"].ToString();
                 string hashedPass = reader["Pass"].ToString();
-                
+
                 if (PasswordHash.ValidatePassword(inputPassWord, hashedPass) == true)
                 {
                     id = reader["ID"].ToString();
                 }
             }
             return id;
-            
+
         }
 
-        public void Register(string UserName,  string Name, string Email, string PassWord)
+        public void Register(string UserName, string Name, string Email, string PassWord)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
             string Alreadypassword = PasswordHash.CreateHash(PassWord);
-            string command = "INSERT INTO UserTable (Name,UserName,Email,Pass) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "');";
+            string command = "INSERT INTO UserTable (Name,UserName,Email,Pass,RoleID) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "','2');";
             myDatabase.ExcuteNonQuery(command);
+            myDatabase.CloseConnection();
+            StorageManagement.CreateStorage(UserName);
         }
-        public void EditProfile(string id,string Name, string UserName, string Email, string PassWord) {
+               public void EditProfile(string id, string Name, string UserName, string Email, string PassWord)
+        {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
             string command;
             if (PassWord == "")
             {
-                command = "UPDATE UserTable SET Name='" + Name + "',UserName='" + UserName + "',Email='" + Email +  "' WHERE ID =" + id + ";";
-          
-                }
-            else {
+                command = "UPDATE UserTable SET Name='" + Name + "',UserName='" + UserName + "',Email='" + Email + "' WHERE ID =" + id + ";";
+
+            }
+            else
+            {
                 string Alreadypassword = PasswordHash.CreateHash(PassWord);
                 command = "UPDATE UserTable SET Name='" + Name + "',UserName='" + UserName + "',Email='" + Email + "',Pass='" + Alreadypassword + "' WHERE ID =" + id + ";";
-          
+
             }
-                myDatabase.ExcuteNonQuery(command);
+            myDatabase.ExcuteNonQuery(command);
         }
         public List<User> GetUser()
         {
