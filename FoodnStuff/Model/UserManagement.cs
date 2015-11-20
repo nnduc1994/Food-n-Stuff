@@ -83,7 +83,7 @@ namespace FoodnStuff.Model
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
             string Alreadypassword = PasswordHash.CreateHash(PassWord);
-            string command = "INSERT INTO UserTable (Name,UserName,Email,Pass) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "');";
+            string command = "INSERT INTO UserTable (Name,UserName,Email,Pass,RoleID) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "','2');";
             myDatabase.ExcuteNonQuery(command);
         }
         public void EditProfile(string id,string Name, string UserName, string Email, string PassWord) {
