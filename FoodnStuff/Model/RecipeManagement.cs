@@ -140,23 +140,6 @@ namespace FoodnStuff.Model
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
         }
-
-
-        public static Ingredient GetIngredient(int ID)
-        {
-            Ingredient A = new Ingredient { };
-            Database myDatabase = new Database();
-            myDatabase.ReturnConnection();
-            string command = "SELECT * FROM Ingredient WHERE ID ='" + ID + "';";
-            myDatabase.ExcuteQuery(command);
-            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
-            A.SetName(reader["Name"].ToString());
-            command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID ='" + ID + "';";
-            reader = myDatabase.ExcuteQuery(command);
-            A.SetAmount(Convert.ToDouble(reader["Amount"].ToString()));
-            return A;
-                
-        }
   
         public static void AddRecipePicture(string path) {
             int maxRecipeID = 0;
@@ -185,6 +168,61 @@ namespace FoodnStuff.Model
             myDatabase.CloseConnection();
 
         }
+        public Recipe getRecipe(int recipeID)
+        {
+            Recipe myRecipe = new Recipe();
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+
+    //Get ID
+            string command = "SELECT * FROM Recipe WHERE ID ='" + recipeID + "';";
+
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+
+    //Get Name, Instruction and AuthorID
+            myRecipe.Name = reader["Name"].ToString();
+            myRecipe.Instruction = reader["Instruction"].ToString();
+            myRecipe.AuthorID = Convert.ToInt32(reader["CreatedID"]);
+
+    //Get AuthorName
+
+            command = "SELECT * FROM UserTable WHERE ID ='" + myRecipe.AuthorID.ToString() + "';";
+
+            myDatabase.ExcuteQuery(command);
+            reader = myDatabase.ExcuteQuery(command);
+
+            myRecipe.AuthorName = reader["Name"].ToString();
+
+    //Get Ingredient
+
+            List<Ingredient> IngredientList = new List<Ingredient>();
+            command = "SELECT * FROM RecipeIngredientAmount WHERE RecipeID ='" + recipeID + "';";
+            myDatabase.ExcuteQuery(command);
+            reader = myDatabase.ExcuteQuery(command);
+            bool EOF = reader.Read();
+            List<int> idList = new List<int>();
+            while (EOF)
+            {
+                idList.Add(Convert.ToInt32(reader["IngredientID"]));
+                EOF = reader.Read();
+            }
+            for (int i = 0; i <= idList.Count; i++)
+            {
+                command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID ='" + idList[i] + "';";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                IngredientList[i].Amount = Convert.ToDouble(reader["Amount"]);
+
+                command = "SELECT * FROM Ingredient WHERE IngredientID ='" + idList[i] + "';";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                IngredientList[i].Name = reader["Name"].ToString();
+            }
+
+            myRecipe.IngredientList = IngredientList;
+            return myRecipe;
+        }
     }
     
 
@@ -196,7 +234,7 @@ namespace FoodnStuff.Model
         }
         public string Name{get;set;}
         public string AuthorName { get; set; }
-        public string AuthorId { get; set; }
+        public int AuthorID { get; set; }
         public string Instruction { get; set; }
         public List<Ingredient> IngredientList { get; set; }
     }
@@ -204,14 +242,7 @@ namespace FoodnStuff.Model
     public class Ingredient{
          public string Name {get;set;}
          public double Amount {get; set;}
-        public void SetName(string p)
-        { Name = p; }
-        public void SetAmount(double p)
-        { Amount = p; }
-        public void Print()
-        {
-            Console.WriteLine(Name);
-            Console.WriteLine(Amount);
-        }
     }
+
+    
 }
