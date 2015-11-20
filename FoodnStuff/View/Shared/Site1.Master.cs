@@ -23,7 +23,7 @@ namespace FoodnStuff.View.Shared
                     Session["UID"] = ID;
                     Session["Role"] = UM.getData("RoleId", ID);
                     Session["Uname"] = UM.getData("UserName", ID);
-
+                    Label1.Text = "Hello, " + Session["Uname"].ToString();
                     //Add here code to show Welcome message on panel
                 }
             }
@@ -36,6 +36,21 @@ namespace FoodnStuff.View.Shared
         public void LogOut() {
             Session.Clear();
             Response.Cookies.Clear();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            LogOut();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Register.aspx", true);
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Login.aspx", true);
         }
     }
 }
