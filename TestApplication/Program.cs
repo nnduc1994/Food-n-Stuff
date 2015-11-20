@@ -32,6 +32,9 @@ namespace TestApplication
             //}
 
             //StorageManagement.AddIngredientToStorage(2, "Chicken", 3, 1, "20.12.2015");
+
+            //Console.WriteLine(Calculation.IngredientAmountSum(1));
+            //Console.WriteLine(Calculation.IngredientCompare(1, 5));
         }
     }
 }
