@@ -28,9 +28,10 @@ namespace TestApplication
             //{
             //    Console.WriteLine(mRecipe.IngredientList[i].Name);
             //    Console.WriteLine(mRecipe.IngredientList[i].Amount);
+            //    Console.WriteLine(mRecipe.IngredientList[i].UnitID);
             //}
 
-            //StorageManagement.AddIngredientToStorage(2, "Chicken", 3, 1);
+            //StorageManagement.AddIngredientToStorage(2, "Chicken", 3, 1, "20.12.2015");
         }
     }
 }

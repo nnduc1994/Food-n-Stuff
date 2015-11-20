@@ -8,7 +8,7 @@ namespace FoodnStuff.Model
 {
     public class StorageManagement
     {
-        public static void AddIngredientToStorage(int StorageOwnerID, string Name, double amount, int UnitID)
+        public static void AddIngredientToStorage(int StorageOwnerID, string Name, double amount, int UnitID, string exdate)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -20,7 +20,7 @@ namespace FoodnStuff.Model
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 int IngredientID = Convert.ToInt32(reader["ID"].ToString());
-                command = "INSERT INTO StorageIngredientAmount (Amount, IngredientID, OwnerID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + StorageOwnerID + "','" + UnitID + "');";
+                command = "INSERT INTO StorageIngredientAmount (Amount, IngredientID, OwnerID, UnitID, ExpiredDate) VALUES ('" + amount + "','" + IngredientID + "','" + StorageOwnerID + "','" + UnitID + "','" + exdate + "');";
                 myDatabase.ExcuteNonQuery(command);
                 myDatabase.CloseConnection();
             }
@@ -35,7 +35,7 @@ namespace FoodnStuff.Model
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 int IngredientID = Convert.ToInt32(reader["ID"].ToString());
-                command = "INSERT INTO StorageIngredientAmount (Amount, IngredientID, OwnerID, UnitID) VALUES ('" + amount + "','" + IngredientID + "','" + StorageOwnerID + "','" + UnitID + "');";
+                command = "INSERT INTO StorageIngredientAmount (Amount, IngredientID, OwnerID, UnitID, ExpiredDate) VALUES ('" + amount + "','" + IngredientID + "','" + StorageOwnerID + "','" + UnitID + "','" + exdate + "');";
                 myDatabase.ExcuteNonQuery(command);
                 myDatabase.CloseConnection();
 

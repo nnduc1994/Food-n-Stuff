@@ -217,6 +217,7 @@ namespace FoodnStuff.Model
                 reader.Read();
                 Ingredient ingredientObj = new Ingredient();
                 ingredientObj.Amount =  Convert.ToDouble(reader["Amount"]);
+                ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
                 IngredientList.Add(ingredientObj);
                 
 
@@ -259,6 +260,7 @@ namespace FoodnStuff.Model
     public class Ingredient{
          public string Name {get;set;}
          public double Amount {get; set;}
+         public int UnitID { get; set;}
     }
 
     
