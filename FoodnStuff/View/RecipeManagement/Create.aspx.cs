@@ -18,13 +18,10 @@ namespace FoodnStuff.View.RecipeManagement
         protected void Button1_Click(object sender, EventArgs e)
         {
             int id = 0;
-            if (Request.Cookies["UserLogIn"] != null)
+            if (Session["UID"] != null)
             {
-                if (Request.Cookies["UserLogIn"]["UID"] != null)
-                {
-                    String ID = Request.Cookies["UserLogIn"]["UID"].ToString();
-                    id = Convert.ToInt32(ID);
-                }
+                    String ID = Session["UID"].ToString();
+                    id = Convert.ToInt32(ID);   
             }
           
 
