@@ -65,17 +65,22 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\background.jpg" />
+    <Content Include="Content\bootcards-desktop.css" />
     <Content Include="Content\img\Image1.jpg" />
     <Content Include="Content\img\placeholder.jpg" />
+    <Content Include="Content\js\bootcards.js" />
+    <Content Include="Content\js\bootcards.min.js" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootcards-desktop.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="View\Index.aspx" />
+    <Content Include="View\Recipe Searcher\Index.aspx" />
+    <Content Include="View\Recipe Searcher\RecipeControl.ascx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
     <Content Include="View\RecipeManagement\RecipeViewer.aspx" />
     <Content Include="View\Shared\AjaxIngredientSuggestion.aspx" />
@@ -98,12 +103,19 @@
   <ItemGroup>
     <Compile Include="Model\StorageManagement.cs" />
     <Compile Include="Model\UnitManagement.cs" />
-    <Compile Include="View\Index.aspx.cs">
+    <Compile Include="View\Recipe Searcher\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Index.aspx.designer.cs">
+    <Compile Include="View\Recipe Searcher\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe Searcher\RecipeControl.ascx.cs">
+      <DependentUpon>RecipeControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Recipe Searcher\RecipeControl.ascx.designer.cs">
+      <DependentUpon>RecipeControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="View\RecipeManagement\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>
