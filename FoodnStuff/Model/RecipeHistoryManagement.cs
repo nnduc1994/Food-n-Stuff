@@ -32,5 +32,23 @@ namespace FoodnStuff.Model
             }
             return RecList;
         }
+
+        public List<string> FindRecList(string uid)
+        {
+            List<string> RecList = new List<string>();
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM Recipe Where Name LIKE '%" + uid + "%'";
+            var reader = myDatabase.ExcuteQuery(command);
+            bool notEOF = false;
+            notEOF = reader.Read();
+            while (notEOF)
+            {
+                RecList.Add(reader["RecipeID"].ToString());
+                notEOF = reader.Read();
+
+            }
+            return RecList;
+        }
     }
 }
