@@ -88,7 +88,6 @@ namespace FoodnStuff.Model
             string command = "INSERT INTO UserTable (Name,UserName,Email,Pass,RoleID) VALUES ('" + Name + "','" + UserName + "','" + Email + "','" + Alreadypassword + "','2');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
-            StorageManagement.CreateStorage(UserName);
         }
                public void EditProfile(string id, string Name, string UserName, string Email, string PassWord)
         {

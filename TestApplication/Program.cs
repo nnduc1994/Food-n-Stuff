@@ -30,6 +30,7 @@ namespace TestApplication
             //    Console.WriteLine(mRecipe.IngredientList[i].Amount);
             //}
 
+            //StorageManagement.AddIngredientToStorage(2, "Chicken", 3, 1);
         }
     }
 }
