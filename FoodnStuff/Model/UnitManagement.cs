@@ -7,7 +7,8 @@ namespace FoodnStuff.Model
 {
     public class UnitManagement
     {
-        public static List<Unit> ListAllUnit() {
+        public static List<Unit> ListAllUnit()
+        {
             Database myDatbase = new Database();
             myDatbase.ReturnConnection();
             string command = "SELECT * FROM Unit";
@@ -15,21 +16,23 @@ namespace FoodnStuff.Model
             List<Unit> returnUnitList = new List<Unit>();
 
             bool EOF = reader.Read();
-            while (EOF) {
+            while (EOF)
+            {
                 Unit unitObj = new Unit();
                 unitObj.Name = reader["Name"].ToString();
-                unitObj.RateToKg = decimal.Parse(reader["RateToKilogram"].ToString());
+                unitObj.ID = int.Parse(reader["ID"].ToString());
                 returnUnitList.Add(unitObj);
                 EOF = reader.Read();
             }
             myDatbase.CloseConnection();
-            return returnUnitList;           
+            return returnUnitList;
         }
     }
 
     //Business Object
-    public class Unit{
+    public class Unit
+    {
         public string Name { get; set; }
-        public decimal RateToKg { get; set; }
+        public int ID { get; set; }
     }
 }

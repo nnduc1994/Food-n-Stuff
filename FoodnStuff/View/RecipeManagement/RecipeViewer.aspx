@@ -13,35 +13,24 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h2><asp:Label ID="lbRecipeName" runat="server" Text="<q>Recipe Name</q>"></asp:Label></h2>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="rating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
+                            <asp:Image ID="imgRecipe" runat="server" ImageUrl="~/Content/img/placeholder.jpg" />
                         </div>
                     </div>
                     <!--end div row recipe name -->
                     <br />
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Ingredient(s)</label>
-                        </div>
-                    </div>
-                    
-                    <div class ="row">
-                        <div class ="col-md-5">
-                            <asp:Label ID="lbIngredient" runat="server" Text="<q>Ingredient</q>"></asp:Label>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="lbAmount" runat="server" Text="<q>Amount</q>"></asp:Label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Ingredient(s)</label><br />
+                                <asp:Label ID="lbIngredient" runat="server" Text=""></asp:Label>
+                            </div>
                         </div>
                     </div>
                     <!--end of div rows ingredients-->
                     <div class="container-fluid">
-                        <asp:TextBox ID="txtbInstruction" runat="server" CssClass="form-control" ReadOnly="true">Instructions</asp:TextBox>
+                        <label>Instruction</label><br />
+                        <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
                     </div>
                     <!--end of div instruction-->
-                </div>
-                <!--end div form group-->
             </form>
         </div>
         <!--end of div sub-container-->       

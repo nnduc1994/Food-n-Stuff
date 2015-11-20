@@ -163,22 +163,23 @@ namespace FoodnStuff.Model
             }
 
 
-            command = "INSERT INTO RecipeImage (Path, RecipeID) VALUES ('" + path  + "','" + (maxRecipeID + 1)  + "');";
+            command = "INSERT INTO RecipeImage (Path, RecipeID) VALUES ('" + path  + "','" + maxRecipeID  + "');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
 
         }
-        public Recipe getRecipe(int recipeID)
+        public static Recipe getRecipe(int recipeID)
         {
             Recipe myRecipe = new Recipe();
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
 
     //Get ID
-            string command = "SELECT * FROM Recipe WHERE ID ='" + recipeID + "';";
+            string command = "SELECT * FROM Recipe WHERE ID =" + recipeID.ToString() + ";";
 
             myDatabase.ExcuteQuery(command);
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
 
     //Get Name, Instruction and AuthorID
             myRecipe.Name = reader["Name"].ToString();
@@ -187,17 +188,18 @@ namespace FoodnStuff.Model
 
     //Get AuthorName
 
-            command = "SELECT * FROM UserTable WHERE ID ='" + myRecipe.AuthorID.ToString() + "';";
+            command = "SELECT * FROM UserTable WHERE ID =" + myRecipe.AuthorID.ToString() + ";";
 
             myDatabase.ExcuteQuery(command);
             reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
 
             myRecipe.AuthorName = reader["Name"].ToString();
 
     //Get Ingredient
 
             List<Ingredient> IngredientList = new List<Ingredient>();
-            command = "SELECT * FROM RecipeIngredientAmount WHERE RecipeID ='" + recipeID + "';";
+            command = "SELECT * FROM RecipeIngredientAmount WHERE RecipeID =" + recipeID.ToString() + ";";
             myDatabase.ExcuteQuery(command);
             reader = myDatabase.ExcuteQuery(command);
             bool EOF = reader.Read();
@@ -207,20 +209,34 @@ namespace FoodnStuff.Model
                 idList.Add(Convert.ToInt32(reader["IngredientID"]));
                 EOF = reader.Read();
             }
-            for (int i = 0; i <= idList.Count; i++)
+            for (int i = 0; i < idList.Count; i++)
             {
-                command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID ='" + idList[i] + "';";
+                command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID =" + idList[i] + ";";
                 myDatabase.ExcuteQuery(command);
                 reader = myDatabase.ExcuteQuery(command);
-                IngredientList[i].Amount = Convert.ToDouble(reader["Amount"]);
+                reader.Read();
+                Ingredient ingredientObj = new Ingredient();
+                ingredientObj.Amount =  Convert.ToDouble(reader["Amount"]);
+                ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
+                IngredientList.Add(ingredientObj);
+                
 
-                command = "SELECT * FROM Ingredient WHERE IngredientID ='" + idList[i] + "';";
+                command = "SELECT * FROM Ingredient WHERE ID =" + idList[i] + ";";
                 myDatabase.ExcuteQuery(command);
                 reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
                 IngredientList[i].Name = reader["Name"].ToString();
             }
-
             myRecipe.IngredientList = IngredientList;
+
+    //Get picture path
+            command = "SELECT * FROM RecipeImage WHERE RecipeID =" + recipeID.ToString() + ";";
+            myDatabase.ExcuteQuery(command);
+            reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            myRecipe.PicturePath = reader["Path"].ToString();
+
+
             return myRecipe;
         }
     }
@@ -232,16 +248,19 @@ namespace FoodnStuff.Model
         public Recipe() {
             IngredientList = new List<Ingredient>();
         }
+        public int ID { get; set; }
         public string Name{get;set;}
         public string AuthorName { get; set; }
         public int AuthorID { get; set; }
         public string Instruction { get; set; }
+        public string PicturePath { get; set; }
         public List<Ingredient> IngredientList { get; set; }
     }
 
     public class Ingredient{
          public string Name {get;set;}
          public double Amount {get; set;}
+         public int UnitID { get; set;}
     }
 
     
