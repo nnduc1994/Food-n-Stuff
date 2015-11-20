@@ -14,9 +14,9 @@ namespace FoodnStuff.View.Shared
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["UserLogIn"] != null)
+            if (Request.Cookies["UserLogIn"] != null || Session["UID"] != null)
             {
-                if (Request.Cookies["UserLogIn"]["UID"] != null)
+                if (Request.Cookies["UserLogIn"]["UID"] != null || Session["UID"] != null)
                 {
                     String ID = Request.Cookies["UserLogIn"]["UID"].ToString();
 
