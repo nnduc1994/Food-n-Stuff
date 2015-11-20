@@ -20,10 +20,10 @@ namespace FoodnStuff.View.Shared
                 {
                     String ID = Request.Cookies["UserLogIn"]["UID"].ToString();
 
-                    Session["UID"] = ID;
-                    Session["Role"] = UM.getData("RoleId", ID);
-                    Session["Uname"] = UM.getData("UserName", ID);
-                    Label1.Text = "Hello, " + Session["Uname"].ToString();
+                    //Session["UID"] = ID;
+                    //Session["Role"] = UM.getData("RoleId", ID);
+                    //Session["Uname"] = UM.getData("UserName", ID);
+                    //Label1.Text = "Hello, " + Session["Uname"].ToString();
                     //Add here code to show Welcome message on panel
                 }
             }
