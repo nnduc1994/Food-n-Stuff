@@ -72,7 +72,6 @@
             <!--end div col-md-7-->
         </div>
     </div>
- 
     <!--end div row first -->
     <style>
         .btn-danger {

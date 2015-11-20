@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -51,7 +52,7 @@ namespace FoodnStuff.View.RecipeManagement
                     file.SaveAs(path);
 
                     //Write to datbase
-                    Model.RecipeManagement.AddRecipePicture(path);
+                    Model.RecipeManagement.AddRecipePicture((Path.Combine("/Content/user_upload", pictureName)).Replace("\\","/"));
                 }
             }
         }
