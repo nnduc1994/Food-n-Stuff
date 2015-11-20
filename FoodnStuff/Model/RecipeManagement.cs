@@ -168,17 +168,18 @@ namespace FoodnStuff.Model
             myDatabase.CloseConnection();
 
         }
-        public Recipe getRecipe(int recipeID)
+        public static Recipe getRecipe(int recipeID)
         {
             Recipe myRecipe = new Recipe();
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
 
     //Get ID
-            string command = "SELECT * FROM Recipe WHERE ID ='" + recipeID + "';";
+            string command = "SELECT * FROM Recipe WHERE ID =" + recipeID.ToString() + ";";
 
             myDatabase.ExcuteQuery(command);
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
 
     //Get Name, Instruction and AuthorID
             myRecipe.Name = reader["Name"].ToString();
@@ -187,17 +188,18 @@ namespace FoodnStuff.Model
 
     //Get AuthorName
 
-            command = "SELECT * FROM UserTable WHERE ID ='" + myRecipe.AuthorID.ToString() + "';";
+            command = "SELECT * FROM UserTable WHERE ID =" + myRecipe.AuthorID.ToString() + ";";
 
             myDatabase.ExcuteQuery(command);
             reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
 
             myRecipe.AuthorName = reader["Name"].ToString();
 
     //Get Ingredient
 
             List<Ingredient> IngredientList = new List<Ingredient>();
-            command = "SELECT * FROM RecipeIngredientAmount WHERE RecipeID ='" + recipeID + "';";
+            command = "SELECT * FROM RecipeIngredientAmount WHERE RecipeID =" + recipeID.ToString() + ";";
             myDatabase.ExcuteQuery(command);
             reader = myDatabase.ExcuteQuery(command);
             bool EOF = reader.Read();
@@ -207,16 +209,21 @@ namespace FoodnStuff.Model
                 idList.Add(Convert.ToInt32(reader["IngredientID"]));
                 EOF = reader.Read();
             }
-            for (int i = 0; i <= idList.Count; i++)
+            for (int i = 0; i < idList.Count; i++)
             {
-                command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID ='" + idList[i] + "';";
+                command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID =" + idList[i] + ";";
                 myDatabase.ExcuteQuery(command);
                 reader = myDatabase.ExcuteQuery(command);
-                IngredientList[i].Amount = Convert.ToDouble(reader["Amount"]);
+                reader.Read();
+                Ingredient ingredientObj = new Ingredient();
+                ingredientObj.Amount =  Convert.ToDouble(reader["Amount"]);
+                IngredientList.Add(ingredientObj);
+                
 
-                command = "SELECT * FROM Ingredient WHERE IngredientID ='" + idList[i] + "';";
+                command = "SELECT * FROM Ingredient WHERE ID =" + idList[i] + ";";
                 myDatabase.ExcuteQuery(command);
                 reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
                 IngredientList[i].Name = reader["Name"].ToString();
             }
 

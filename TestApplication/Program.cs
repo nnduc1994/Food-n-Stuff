@@ -16,7 +16,19 @@ namespace TestApplication
             //RecipeManagement.AddIngredientToRecipe("Garlic", 2, 1);
             //RecipeManagement.AddIngredientToRecipe("Onion", 4, 1);
 
-            List<string> a = RecipeManagement.GetAvailableIngredientByName("chic");
+            //List<string> a = RecipeManagement.GetAvailableIngredientByName("chic");
+
+            //Recipe mRecipe = new Recipe();
+            //mRecipe = RecipeManagement.getRecipe(5);
+            //Console.WriteLine(mRecipe.Name);
+            //Console.WriteLine(mRecipe.AuthorName);
+            //Console.WriteLine(mRecipe.AuthorID);
+            //Console.WriteLine(mRecipe.Instruction);
+            //for (int i = 0; i < mRecipe.IngredientList.Count; i++)
+            //{
+            //    Console.WriteLine(mRecipe.IngredientList[i].Name);
+            //    Console.WriteLine(mRecipe.IngredientList[i].Amount);
+            //}
 
         }
     }
