@@ -163,7 +163,7 @@ namespace FoodnStuff.Model
             }
 
 
-            command = "INSERT INTO RecipeImage (Path, RecipeID) VALUES ('" + path  + "','" + (maxRecipeID + 1)  + "');";
+            command = "INSERT INTO RecipeImage (Path, RecipeID) VALUES ('" + path  + "','" + maxRecipeID  + "');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
 
@@ -226,8 +226,16 @@ namespace FoodnStuff.Model
                 reader.Read();
                 IngredientList[i].Name = reader["Name"].ToString();
             }
-
             myRecipe.IngredientList = IngredientList;
+
+    //Get picture path
+            command = "SELECT * FROM RecipeImage WHERE RecipeID =" + recipeID.ToString() + ";";
+            myDatabase.ExcuteQuery(command);
+            reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            myRecipe.PicturePath = reader["Path"].ToString();
+
+
             return myRecipe;
         }
     }
@@ -243,6 +251,7 @@ namespace FoodnStuff.Model
         public string AuthorName { get; set; }
         public int AuthorID { get; set; }
         public string Instruction { get; set; }
+        public string PicturePath { get; set; }
         public List<Ingredient> IngredientList { get; set; }
     }
 

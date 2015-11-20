@@ -31,6 +31,15 @@ namespace FoodnStuff.View.RecipeManagement {
         protected global::System.Web.UI.WebControls.Label lbRecipeName;
         
         /// <summary>
+        /// imgRecipe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgRecipe;
+        
+        /// <summary>
         /// lbIngredient control.
         /// </summary>
         /// <remarks>
@@ -40,21 +49,12 @@ namespace FoodnStuff.View.RecipeManagement {
         protected global::System.Web.UI.WebControls.Label lbIngredient;
         
         /// <summary>
-        /// lbAmount control.
+        /// lbInstruction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAmount;
-        
-        /// <summary>
-        /// txtbInstruction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbInstruction;
+        protected global::System.Web.UI.WebControls.Label lbInstruction;
     }
 }
