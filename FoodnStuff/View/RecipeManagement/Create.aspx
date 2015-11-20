@@ -62,8 +62,7 @@
                                 <asp:TextBox ID="TextBox5" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
                         </div>
-
-
+                        <asp:DropDownList ID="DropDownList1" runat="server" class="form-control hidden-lg hidden-md hidden-sm hidden-xs"></asp:DropDownList>
                         <asp:Button ID="Button1" runat="server" Text="Create Recipe" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
                     </div>
                     <!--end div form-group-->
@@ -223,15 +222,22 @@
             var labelAmount = document.createElement("label");
             labelAmount.textContent = "Amount:";
             var divColMd5SecondAmount = document.createElement("div");
-            divColMd5SecondAmount.className = "col-md-6";
+            divColMd5SecondAmount.className = "col-md-4";
             var textboxAmount = document.createElement("input");
             textboxAmount.type = "text";
             textboxAmount.className = "form-control";
-            textboxAmount.name = "IngredientAmount" + amountOfIngredient;
+            textboxAmount.name = "IngredientAmount" + amountOfIngredient;        
+
+            //Create Unit DropdownList
+            var dropdownDiv = document.createElement("div");
+            dropdownDiv.className = "col-md-2";
+            $("#ContentPlaceHolder1_DropDownList1").clone().prop('name', "AmountUnit" + amountOfIngredient).prop("class","form-control").appendTo(dropdownDiv);
             divColMd5SecondAmount.appendChild(textboxAmount);
+           
             divColMd5Amount.appendChild(labelAmount);
             rowDivSecond.appendChild(divColMd5Amount);
             rowDivSecond.appendChild(divColMd5SecondAmount);
+            rowDivSecond.appendChild(dropdownDiv);
 
             container.appendChild(rowDiv);
             container.appendChild(rowDivSecond);
