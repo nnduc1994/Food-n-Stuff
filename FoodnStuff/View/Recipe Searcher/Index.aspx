@@ -4,13 +4,15 @@
 <%@ Reference Control="~/View/Recipe Searcher/RecipeControl.ascx" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-        <div class="row">
-        <div class="col-md-offset-3 col-md-7">
-        <h1><strong>Food n' Stuff</strong></h1>
-        <label>Where cooking never get boring</label>
-        <div class="row">
-            <form id="form1" runat="server">
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-offset-3 col-md-7">
+            
+            <h1><strong>Food n' Stuff</strong></h1>
+            <label>Where cooking never get boring</label>
+            <div class="row">
+            
                 <div class="form-group">
                 <div class="col-md-6">
                     <asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Recipe Name"></asp:TextBox></div>
@@ -18,17 +20,18 @@
                     <asp:Button ID="Button1" runat="server" Text="Search" class="btn btn-danger" OnClick="Button1_Click" />
                 </div>
                 </div>
-            </form>
-            </div><!--end div col-md-7 -->
-        </div><!--end div row second ( text box and button) -->
+    
             
-</div><!--end div row first -->
-    </div>
-    <div class ="container" id ="recipe">
-        <div class="sub-container">
-            <asp:Panel ID="Panel1" runat="server" class ="panel"></asp:Panel>
-        </div>                     
-    </div>
+             </div><!--end div row -->
+            
+        </div><!--end div col-md-7 ( text box and button) -->            
+        </div><!--end div row first -->
+            <div class ="container" id ="recipe">       
+                <asp:Panel ID="Panel1" runat="server"></asp:Panel>   
+            </div>
+        </div>
+    </form>
+    
     <style>
         .container {
             padding-top: 10%;

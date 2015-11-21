@@ -19,8 +19,16 @@ namespace FoodnStuff.View
             Control myControl = LoadControl("~/View/Recipe Searcher/RecipeControl.ascx");
             if(myControl != null)
             {
-                ((Recipe_Searcher.WebUserControl1)myControl).Image1.ImageUrl = "http://500.co/wp-content/uploads/2015/02/love.png";
-                Panel1.Controls.Add(myControl);
+                try
+                {
+                    //((Recipe_Searcher.RecipeControl)myControl).image.ImageUrl = "http://500.co/wp-content/uploads/2015/02/love.png";
+                    Panel1.Controls.Add(myControl);
+                    
+                }
+                catch
+                {
+
+                }
             }
 
         }
