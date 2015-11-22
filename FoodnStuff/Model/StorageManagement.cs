@@ -42,7 +42,7 @@ namespace FoodnStuff.Model
             }
         }
 
-        public static List<Ingredient> GetAvailableIngredient(List<int> IngredientIDList, int RecipeID)
+        public static List<Ingredient> GetAvailableIngredient(List<int> IngredientIDList)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -78,6 +78,7 @@ namespace FoodnStuff.Model
                     reader = myDatabase.ExcuteQuery(command);
                     reader.Read();
                     IngredientList[i].Name = reader["Name"].ToString();
+                    EOF = reader.Read();
                 }
             }
             return IngredientList;

@@ -10,15 +10,15 @@
                 <hr />
                 <br />
                 <div class="form-group">
-                    <asp:Label ID="Label1" runat="server" Text="Nhet cai ten Recipe vao day"></asp:Label>
+                    <asp:Label ID="lbRecipeName" runat="server" Text="Recipe Name"></asp:Label>
                     <div class="row">
                         <div class="col-md-6">
                             <h3>Recipe Ingredient </h3>
-                            <asp:Label ID="Label2" runat="server" Text="nhet het ingredient cua recipe vao cai lable nay"></asp:Label>
+                            <asp:Label ID="lbRecipeIngredient" runat="server" Text=""></asp:Label>
                         </div>
                         <div class="col-md-6">
                             <h3>Available ingredient in Storage </h3>
-                            <asp:Label ID="Label3" runat="server" Text="nhet het available ingredient trong storage vao cai lable nay"></asp:Label>
+                            <asp:Label ID="lbAvailableIngredient" runat="server" Text=""></asp:Label><br />
                         </div>
                         <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
                     </div>

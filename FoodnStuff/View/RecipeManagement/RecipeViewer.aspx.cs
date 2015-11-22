@@ -13,17 +13,28 @@ namespace FoodnStuff.View.RecipeManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //int recipeID = 8;
-            if (Request["RecipeID"] != null) 
+
+            //int recipeID = 1;
+            if (Request["RecipeID"] != null)
             {
                 int recipeID = Convert.ToInt32(Request["RecipeID"]);
                 Model.Recipe mRecipe = new Model.Recipe();
                 mRecipe = Model.RecipeManagement.getRecipe(recipeID)[0];
                 lbRecipeName.Text = mRecipe.Name;
                 imgRecipe.ImageUrl = mRecipe.PicturePath;
+
                 for (int i = 0; i < mRecipe.IngredientList.Count; i++)
                 {
-                    lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + "<br/>";
+                    Model.Database myDatabase = new Model.Database();
+                    myDatabase.ReturnConnection();
+
+                    string command = "SELECT * FROM Unit WHERE ID =" + mRecipe.IngredientList[i].UnitID + ";";
+                    myDatabase.ExcuteQuery(command);
+                    OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                    reader.Read();
+                    string Unit = reader["Name"].ToString();
+
+                    lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + Unit + "s<br/>";
                 }
                 lbInstruction.Text = mRecipe.Instruction;
             }
