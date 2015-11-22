@@ -280,6 +280,7 @@ namespace FoodnStuff.Model
          public string Name {get;set;}
          public double Amount {get; set;}
          public int UnitID { get; set;}
+         public string ExpiredDay { get; set; }
     }
 
     
