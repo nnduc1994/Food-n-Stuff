@@ -10,18 +10,19 @@ namespace FoodnStuff.View.RecipeManagement
 {
     public partial class CookingConfirmation : System.Web.UI.Page
     {
+        //For hardcode testing
+        //int RecipeID = 1;
+        //int UserID = 2;
         List<int> IDList = new List<int>();
         protected void Page_Load(object sender, EventArgs e)
         {
             lbRecipeIngredient.Text = "";
             lbAvailableIngredient.Text = "";
-            int RecipeID = 1;
-            int UserID = 2;
-            //if (Request["RecipeID"] != null && Session["UID"] != null)
-            //{
-            //    //Use this to call or calculate as you wish
-            //    int RecipeID = Convert.ToInt16(Request["RecipeID"]);
-            //    int UserID = Convert.ToInt16(Session["UID"]);
+            if (Request["RecipeID"] != null && Session["UID"] != null)
+            {
+                //Use this to call or calculate as you wish
+                int RecipeID = Convert.ToInt16(Request["RecipeID"]);
+                int UserID = Convert.ToInt16(Session["UID"]);
 
 
                 //Get Ingredient for Recipe
@@ -67,23 +68,21 @@ namespace FoodnStuff.View.RecipeManagement
                 lbAvailableIngredient.Text += AvailableIngredientList[i].Name + " - Amount: " + AvailableIngredientList[i].Amount + " " + Unit + "s Expired day: " + AvailableIngredientList[i].ExpiredDay + "<br/>";
 
             }
-            //}
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int RecipeID = 1;
-            int UserID = 2;
             //Use this function to calculate
 
-            //if (Request["RecipeID"] != null && Session["UID"] != null)
-            //{
-            //    //Use this to call or calculate as you wish
-            //    int RecipeID = Convert.ToInt16(Request["RecipeID"]);
-            //    int UserID = Convert.ToInt16(Session["UID"]);
-            //    Model.RecipeHistoryManagement.AddNewHR(UserID, RecipeID);
+            if (Request["RecipeID"] != null && Session["UID"] != null)
+            {
+                //Use this to call or calculate as you wish
+                int RecipeID = Convert.ToInt16(Request["RecipeID"]);
+                int UserID = Convert.ToInt16(Session["UID"]);
+                Model.RecipeHistoryManagement.AddNewHR(UserID, RecipeID);
 
-            for (int i = 0; i < IDList.Count; i++)
+                for (int i = 0; i < IDList.Count; i++)
             {
                 Model.Database myDatabase = new Model.Database();
                 myDatabase.ReturnConnection();
@@ -156,7 +155,7 @@ namespace FoodnStuff.View.RecipeManagement
                 }
             }
 
-                //}
+                }
             }
     }
 }

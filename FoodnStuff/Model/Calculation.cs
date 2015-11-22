@@ -124,18 +124,23 @@ namespace FoodnStuff.Model
 
                 if (AvailableAmount <= amount)
                 {
+                    myDatabase.ReturnConnection();
                     command = "DELETE * FROM StorageIngredientAmount WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
                     myDatabase.ExcuteNonQuery(command);
                     amount -= AvailableAmount;
+                    myDatabase.CloseConnection();
                 }
                 else
                 {
-                        amount = 0;
-                        AvailableAmount -= amount;
-                        AvailableAmount = AvailableAmount / rate;
-                        command = "UPDATE StorageIngredientAmount SET Amount =" + AvailableAmount + " WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
-                        myDatabase.ExcuteNonQuery(command);
+                    myDatabase.ReturnConnection();
+                    AvailableAmount -= amount;
+                    AvailableAmount = AvailableAmount / rate;
+                    command = "UPDATE StorageIngredientAmount SET Amount =" + AvailableAmount + " WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
+                    myDatabase.ExcuteNonQuery(command);
+                    myDatabase.CloseConnection();
+                    amount = 0;
                 }
+                
             }
         }
     }

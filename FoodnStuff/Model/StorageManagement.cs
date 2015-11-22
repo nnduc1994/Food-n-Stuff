@@ -61,23 +61,25 @@ namespace FoodnStuff.Model
 
             for (int i = 0; i < ResultList.Count; i++)
             {
-                Ingredient ingredientObj = new Ingredient();
-
+                
+                string IngredientName;
                 string command = "SELECT * FROM Ingredient WHERE ID =" + ResultList[i] + ";";
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader1 = myDatabase.ExcuteQuery(command);
                 reader1.Read();
-                ingredientObj.Name = reader1["Name"].ToString();
+                IngredientName = reader1["Name"].ToString();
 
                 command = "SELECT * FROM StorageIngredientAmount WHERE (IngredientID =" + ResultList[i] + ") AND (OwnerID =" + OwnerID + ");";
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 bool EOF = reader.Read();
                 while (EOF)
-                {         
+                {
+                    Ingredient ingredientObj = new Ingredient();
                     ingredientObj.Amount = Convert.ToDouble(reader["Amount"]);
                     ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
                     ingredientObj.ExpiredDay = (reader["ExpiredDate"].ToString()).Substring(0,10);
+                    ingredientObj.Name = IngredientName;
                     IngredientList.Add(ingredientObj);
                     EOF = reader.Read();
                 }
