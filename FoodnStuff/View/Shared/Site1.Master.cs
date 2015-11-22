@@ -14,15 +14,15 @@ namespace FoodnStuff.View.Shared
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["UserLogIn"] != null || Session["UID"] != null)
+            if (Request.Cookies["UserLogIn"] != null)
             {
                 if (Request.Cookies["UserLogIn"]["UID"] != null || Session["UID"] != null)
                 {
                     String ID = Request.Cookies["UserLogIn"]["UID"].ToString();
 
-                    //Session["UID"] = ID;
-                    //Session["Role"] = UM.getData("RoleId", ID);
-                    //Session["Uname"] = UM.getData("UserName", ID);
+                    Session["UID"] = ID;
+                    Session["Role"] = UM.getData("RoleId", ID);
+                    Session["Uname"] = UM.getData("UserName", ID);
                     //Label1.Text = "Hello, " + Session["Uname"].ToString();
                     //Add here code to show Welcome message on panel
                 }

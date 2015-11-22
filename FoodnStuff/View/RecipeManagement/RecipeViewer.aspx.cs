@@ -18,7 +18,7 @@ namespace FoodnStuff.View.RecipeManagement
             {
                 int recipeID = Convert.ToInt32(Request["RecipeID"]);
                 Model.Recipe mRecipe = new Model.Recipe();
-                mRecipe = Model.RecipeManagement.getRecipe(recipeID);
+                mRecipe = Model.RecipeManagement.getRecipe(recipeID)[0];
                 lbRecipeName.Text = mRecipe.Name;
                 imgRecipe.ImageUrl = mRecipe.PicturePath;
                 for (int i = 0; i < mRecipe.IngredientList.Count; i++)

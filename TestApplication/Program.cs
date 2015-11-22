@@ -35,6 +35,15 @@ namespace TestApplication
 
             //Console.WriteLine(Calculation.IngredientAmountSum(1));
             //Console.WriteLine(Calculation.IngredientCompare(1, 5));
+
+            //List<Recipe> myRecipe = new List<Recipe>();
+            //myRecipe = RecipeManagement.getRecipe(null, "Chicken");
+            //foreach (var a in myRecipe) {
+            //    Console.WriteLine(a.Name);
+            //    Console.WriteLine("------------------");
+            //}
+            //Console.ReadLine();
+
         }
     }
 }

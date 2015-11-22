@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h2><asp:Label ID="lbRecipeName" runat="server" Text="<q>Recipe Name</q>"></asp:Label></h2>
-                            <asp:Image ID="imgRecipe" runat="server" ImageUrl="~/Content/img/placeholder.jpg" />
+                            <asp:Image ID="imgRecipe" runat="server" ImageUrl="~/Content/img/placeholder.jpg" style="max-width:100%;max-height:100%;"/>
                         </div>
                     </div>
                     <!--end div row recipe name -->

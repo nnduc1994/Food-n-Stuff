@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Calculation.cs" />
+    <Compile Include="Model\RecipeHistoryManagement.cs" />
     <Compile Include="Model\StorageManagement.cs" />
     <Compile Include="Model\UnitManagement.cs" />
     <Compile Include="View\Recipe Searcher\Index.aspx.cs">
