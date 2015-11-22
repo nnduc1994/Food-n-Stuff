@@ -42,5 +42,46 @@ namespace FoodnStuff.Model
             }
         }
 
+        public static List<Ingredient> GetAvailableIngredient(List<int> IngredientIDList, int RecipeID)
+        {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            List<Ingredient> IngredientList = new List<Ingredient>();
+            List<int> ResultList = new List<int>();
+            //Get Ingredient
+
+            for (int i = 0; i < IngredientIDList.Count; i++)
+            {
+                if (Calculation.CheckIngredientInStorage(IngredientIDList[i]))
+                {
+                    ResultList.Add(IngredientIDList[i]);
+                }
+            }
+
+
+            for (int i = 0; i < ResultList.Count; i++)
+            {
+                string command = "SELECT * FROM StorageIngredientAmount WHERE IngredientID =" + ResultList[i] + ";";
+                myDatabase.ExcuteQuery(command);
+                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                bool EOF = reader.Read();
+                while (EOF)
+                {
+                    Ingredient ingredientObj = new Ingredient();
+                    ingredientObj.Amount = Convert.ToDouble(reader["Amount"]);
+                    ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
+                    ingredientObj.ExpiredDay = reader["ExpiredDate"].ToString();
+                    IngredientList.Add(ingredientObj);
+
+                    command = "SELECT * FROM Ingredient WHERE ID =" + ResultList[i] + ";";
+                    myDatabase.ExcuteQuery(command);
+                    reader = myDatabase.ExcuteQuery(command);
+                    reader.Read();
+                    IngredientList[i].Name = reader["Name"].ToString();
+                }
+            }
+            return IngredientList;
+        }
+
     }
 }

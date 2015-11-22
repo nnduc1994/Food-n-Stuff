@@ -7,7 +7,7 @@ namespace FoodnStuff.Model
 {
     public class RecipeHistoryManagement
     {
-        public void AddNewHR(string uid,string rid)
+        public void AddNewHR(int uid,int rid)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -15,7 +15,7 @@ namespace FoodnStuff.Model
             myDatabase.ExcuteNonQuery(command);
             
         }
-        public List<string> GetRecList(string uid) 
+        public List<string> GetRecList(int uid) 
         {
             List<string> RecList = new List<string>();
             Database myDatabase = new Database();
@@ -33,7 +33,7 @@ namespace FoodnStuff.Model
             return RecList;
         }
 
-        public List<string> FindRecList(string uid)
+        public List<string> FindRecList(int uid)
         {
             List<string> RecList = new List<string>();
             Database myDatabase = new Database();
