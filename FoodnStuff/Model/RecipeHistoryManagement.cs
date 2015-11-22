@@ -7,7 +7,7 @@ namespace FoodnStuff.Model
 {
     public class RecipeHistoryManagement
     {
-        public void AddNewHR(int uid,int rid)
+        public static void AddNewHR(int uid,int rid)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();

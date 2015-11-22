@@ -10,18 +10,21 @@ namespace FoodnStuff.View.RecipeManagement
 {
     public partial class CookingConfirmation : System.Web.UI.Page
     {
+        List<int> IDList = new List<int>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            lbRecipeIngredient.Text = "";
+            lbAvailableIngredient.Text = "";
             int RecipeID = 1;
+            int UserID = 2;
             //if (Request["RecipeID"] != null && Session["UID"] != null)
             //{
             //    //Use this to call or calculate as you wish
             //    int RecipeID = Convert.ToInt16(Request["RecipeID"]);
-                int UserID = Convert.ToInt16(Session["UID"]);
+            //    int UserID = Convert.ToInt16(Session["UID"]);
 
 
                 //Get Ingredient for Recipe
-                List<int> IDList = new List<int>();
                 Model.Recipe mRecipe = new Model.Recipe();
                 mRecipe = Model.RecipeManagement.getRecipe(RecipeID)[0];
                 lbRecipeName.Text = mRecipe.Name;
@@ -49,7 +52,7 @@ namespace FoodnStuff.View.RecipeManagement
             //Get Available Ingredient
 
             List<Model.Ingredient> AvailableIngredientList = new List<Model.Ingredient>();
-            AvailableIngredientList = Model.StorageManagement.GetAvailableIngredient(IDList);
+            AvailableIngredientList = Model.StorageManagement.GetAvailableIngredient(IDList,UserID);
             for (int i = 0; i < AvailableIngredientList.Count; i++)
             {
                 Model.Database myDatabase = new Model.Database();
@@ -60,7 +63,8 @@ namespace FoodnStuff.View.RecipeManagement
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 string Unit = reader["Name"].ToString();
-                lbAvailableIngredient.Text += AvailableIngredientList[i].Name + " - Amount: " + AvailableIngredientList[i].Amount + " " + Unit + "s<br/>";
+
+                lbAvailableIngredient.Text += AvailableIngredientList[i].Name + " - Amount: " + AvailableIngredientList[i].Amount + " " + Unit + "s Expired day: " + AvailableIngredientList[i].ExpiredDay + "<br/>";
 
             }
             //}
@@ -68,7 +72,91 @@ namespace FoodnStuff.View.RecipeManagement
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            int RecipeID = 1;
+            int UserID = 2;
             //Use this function to calculate
-        }
+
+            //if (Request["RecipeID"] != null && Session["UID"] != null)
+            //{
+            //    //Use this to call or calculate as you wish
+            //    int RecipeID = Convert.ToInt16(Request["RecipeID"]);
+            //    int UserID = Convert.ToInt16(Session["UID"]);
+            //    Model.RecipeHistoryManagement.AddNewHR(UserID, RecipeID);
+
+            for (int i = 0; i < IDList.Count; i++)
+            {
+                Model.Database myDatabase = new Model.Database();
+                myDatabase.ReturnConnection();
+
+                string command = "SELECT * FROM Ingredient WHERE ID =" + IDList[i] + ";";
+                myDatabase.ExcuteQuery(command);
+                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
+                string IngredientName = reader["Name"].ToString();
+
+                int caseSwitch = Model.Calculation.IngredientCompare(IDList[i],RecipeID,UserID);
+                switch (caseSwitch)
+                {
+                    //No Ingredient in storage   
+                    case 0:
+                        lbRemind.Text += "There is no " + IngredientName + " in your storage<br/>";
+                        break;
+                    //Equal amount of ingredient in storage
+                    case 1:
+                        command = "DELETE * FROM StorageIngredientAmount WHERE (IngredientID =" + IDList[i] + ") AND (OwnerID ="+ UserID +");";
+                        myDatabase.ExcuteNonQuery(command);
+                        break;
+                    //Storage has more amount than recipe needed
+                    case 2:
+
+                        myDatabase.ReturnConnection();
+                        command = "SELECT * FROM RecipeIngredientAmount WHERE (IngredientID =" + IDList[i] + ") AND (RecipeID =" + RecipeID + ");";
+                        myDatabase.ExcuteQuery(command);
+                        reader = myDatabase.ExcuteQuery(command);
+                        reader.Read();
+                        double RecipeAmount = Convert.ToDouble(reader["Amount"]);
+
+                        command = "SELECT * FROM Unit WHERE ID =" + Convert.ToInt32(reader["UnitID"]) + ";";
+                        myDatabase.ExcuteQuery(command);
+                        reader = myDatabase.ExcuteQuery(command);
+                        reader.Read();
+
+                        RecipeAmount = RecipeAmount * Convert.ToDouble(reader["RateToKilogram"]);
+
+                        Model.Calculation.IngredientCase2Calculation(IDList[i], RecipeAmount, UserID);
+
+                        break;
+                    // Storage has less amount than recipe needed
+                    case 3:
+
+                        double StorageSum = Model.Calculation.IngredientAmountSum(IDList[i],UserID);
+                        myDatabase.ReturnConnection();
+                        command = "SELECT * FROM RecipeIngredientAmount WHERE (IngredientID =" + IDList[i] + ") AND (RecipeID =" + RecipeID + ");";
+                        myDatabase.ExcuteQuery(command);
+                        reader = myDatabase.ExcuteQuery(command);
+                        reader.Read();
+                        double RecipeAmount1 = Convert.ToDouble(reader["Amount"]);
+
+                        command = "SELECT * FROM Unit WHERE ID =" + Convert.ToInt32(reader["UnitID"]) + ";";
+                        myDatabase.ExcuteQuery(command);
+                        reader = myDatabase.ExcuteQuery(command);
+                        reader.Read();
+
+                        RecipeAmount1 = RecipeAmount1 * Convert.ToDouble(reader["RateToKilogram"]);
+                        string UnitName = reader["Name"].ToString();
+
+                        double remain = RecipeAmount1 - StorageSum;
+
+                        //Edit database
+                        command = "DELETE * FROM StorageIngredientAmount WHERE (IngredientID =" + IDList[i] + ") AND (OwnerID =" + UserID + ");";
+                        myDatabase.ExcuteNonQuery(command);
+                        //Reminder message
+                        lbRemind.Text += "You need " + remain + " " + UnitName +"s of " + IngredientName + " more for this recipe<br/>";
+                        break;
+                }
+            }
+
+                //}
+            }
     }
 }

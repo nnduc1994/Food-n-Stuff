@@ -42,7 +42,7 @@ namespace FoodnStuff.Model
             }
         }
 
-        public static List<Ingredient> GetAvailableIngredient(List<int> IngredientIDList)
+        public static List<Ingredient> GetAvailableIngredient(List<int> IngredientIDList,int OwnerID)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -52,7 +52,7 @@ namespace FoodnStuff.Model
 
             for (int i = 0; i < IngredientIDList.Count; i++)
             {
-                if (Calculation.CheckIngredientInStorage(IngredientIDList[i]))
+                if (Calculation.CheckIngredientInStorage(IngredientIDList[i],OwnerID))
                 {
                     ResultList.Add(IngredientIDList[i]);
                 }
@@ -61,25 +61,27 @@ namespace FoodnStuff.Model
 
             for (int i = 0; i < ResultList.Count; i++)
             {
-                string command = "SELECT * FROM StorageIngredientAmount WHERE IngredientID =" + ResultList[i] + ";";
+                Ingredient ingredientObj = new Ingredient();
+
+                string command = "SELECT * FROM Ingredient WHERE ID =" + ResultList[i] + ";";
+                myDatabase.ExcuteQuery(command);
+                OleDbDataReader reader1 = myDatabase.ExcuteQuery(command);
+                reader1.Read();
+                ingredientObj.Name = reader1["Name"].ToString();
+
+                command = "SELECT * FROM StorageIngredientAmount WHERE (IngredientID =" + ResultList[i] + ") AND (OwnerID =" + OwnerID + ");";
                 myDatabase.ExcuteQuery(command);
                 OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                 bool EOF = reader.Read();
                 while (EOF)
-                {
-                    Ingredient ingredientObj = new Ingredient();
+                {         
                     ingredientObj.Amount = Convert.ToDouble(reader["Amount"]);
                     ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
-                    ingredientObj.ExpiredDay = reader["ExpiredDate"].ToString();
+                    ingredientObj.ExpiredDay = (reader["ExpiredDate"].ToString()).Substring(0,10);
                     IngredientList.Add(ingredientObj);
-
-                    command = "SELECT * FROM Ingredient WHERE ID =" + ResultList[i] + ";";
-                    myDatabase.ExcuteQuery(command);
-                    reader = myDatabase.ExcuteQuery(command);
-                    reader.Read();
-                    IngredientList[i].Name = reader["Name"].ToString();
                     EOF = reader.Read();
                 }
+
             }
             return IngredientList;
         }

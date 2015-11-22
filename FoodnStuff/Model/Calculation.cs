@@ -8,11 +8,11 @@ namespace FoodnStuff.Model
 {
     public class Calculation
     {
-        public static bool CheckIngredientInStorage(int IngredientID)
+        public static bool CheckIngredientInStorage(int IngredientID,int OwnerID)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "SELECT * FROM StorageIngredientAmount WHERE IngredientID =" + IngredientID + ";";
+            string command = "SELECT * FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID ="+ OwnerID +");";
             myDatabase.ExcuteQuery(command);
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
             if (reader.Read())
@@ -22,12 +22,12 @@ namespace FoodnStuff.Model
             else return false;
         }
 
-        public static double IngredientAmountSum(int IngredientID)
+        public static double IngredientAmountSum(int IngredientID, int OwnerID)
         {
             double sum = 0;
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "SELECT * FROM StorageIngredientAmount WHERE IngredientID =" + IngredientID + ";";
+            string command = "SELECT * FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + ");";
             myDatabase.ExcuteQuery(command);
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
             bool EOF = reader.Read();
@@ -52,11 +52,11 @@ namespace FoodnStuff.Model
             return sum;
         }
 
-        public static int IngredientCompare(int IngredientID, int RecipeID)
+        public static int IngredientCompare(int IngredientID, int RecipeID, int OwnerID)
         {
-            if (CheckIngredientInStorage(IngredientID))
+            if (CheckIngredientInStorage(IngredientID,OwnerID))
             {
-                double StorageSum = IngredientAmountSum(IngredientID);
+                double StorageSum = IngredientAmountSum(IngredientID,OwnerID);
                 Database myDatabase = new Database();
                 myDatabase.ReturnConnection();
                 string command = "SELECT * FROM RecipeIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (RecipeID =" + RecipeID + ");";
@@ -98,6 +98,45 @@ namespace FoodnStuff.Model
                 return 0;
             }
 
+        }
+
+        public static void IngredientCase2Calculation(int IngredientID,double amount,int OwnerID)
+        {
+            while (amount > 0)
+            {
+                Database myDatabase = new Database();
+                myDatabase.ReturnConnection();
+                string command = "SELECT * FROM StorageIngredientAmount WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
+                myDatabase.ExcuteQuery(command);
+                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
+
+                double AvailableAmount = Convert.ToDouble(reader["Amount"]);
+
+                command = "SELECT * FROM Unit WHERE ID =" + Convert.ToInt32(reader["UnitID"]) + ";";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
+
+                double rate = Convert.ToDouble(reader["RateToKilogram"]);
+
+                AvailableAmount = AvailableAmount * rate;
+
+                if (AvailableAmount <= amount)
+                {
+                    command = "DELETE * FROM StorageIngredientAmount WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
+                    myDatabase.ExcuteNonQuery(command);
+                    amount -= AvailableAmount;
+                }
+                else
+                {
+                        amount = 0;
+                        AvailableAmount -= amount;
+                        AvailableAmount = AvailableAmount / rate;
+                        command = "UPDATE StorageIngredientAmount SET Amount =" + AvailableAmount + " WHERE ExpiredDate = (SELECT MIN(ExpiredDate) FROM StorageIngredientAmount WHERE (IngredientID =" + IngredientID + ") AND (OwnerID =" + OwnerID + "));";
+                        myDatabase.ExcuteNonQuery(command);
+                }
+            }
         }
     }
 }

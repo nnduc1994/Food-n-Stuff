@@ -20,7 +20,9 @@
                             <h3>Available ingredient in Storage </h3>
                             <asp:Label ID="lbAvailableIngredient" runat="server" Text=""></asp:Label><br />
                         </div>
-                        <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
+                        <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" /><br />
+                            <h3>Reminder </h3>
+                            <asp:Label ID="lbRemind" runat="server" Text=""></asp:Label><br />
                     </div>
                </div> 
             </form>
