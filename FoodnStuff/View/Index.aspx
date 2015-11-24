@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="Recipe Searcher" Language="C#" MasterPageFile="~/View/Shared/Site1.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="FoodnStuff.View.Index" %>
 
-<%@ Register src="RecipeControl.ascx" tagname="RecipeControl" tagprefix="uc1" %>
 <%@ Reference Control="~/View/Recipe Searcher/RecipeControl.ascx" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

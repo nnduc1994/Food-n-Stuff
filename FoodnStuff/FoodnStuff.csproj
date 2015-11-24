@@ -80,11 +80,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="View\Recipe Searcher\Index.aspx" />
+    <Content Include="View\Index.aspx" />
     <Content Include="View\Recipe Searcher\RecipeControl.ascx" />
     <Content Include="View\RecipeManagement\CookingConfirmation.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
     <Content Include="View\RecipeManagement\RecipeViewer.aspx" />
+    <Content Include="View\SearchResultManagement\Result.aspx" />
     <Content Include="View\Shared\AjaxIngredientSuggestion.aspx" />
     <Content Include="View\Shared\Site1.Master" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -107,11 +108,11 @@
     <Compile Include="Model\RecipeHistoryManagement.cs" />
     <Compile Include="Model\StorageManagement.cs" />
     <Compile Include="Model\UnitManagement.cs" />
-    <Compile Include="View\Recipe Searcher\Index.aspx.cs">
+    <Compile Include="View\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Recipe Searcher\Index.aspx.designer.cs">
+    <Compile Include="View\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Recipe Searcher\RecipeControl.ascx.cs">
@@ -142,6 +143,13 @@
     <Compile Include="View\RecipeManagement\RecipeViewer.aspx.designer.cs">
       <DependentUpon>RecipeViewer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\SearchResultManagement\Result.aspx.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\SearchResultManagement\Result.aspx.designer.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Shared\AjaxIngredientSuggestion.aspx.cs">
       <DependentUpon>AjaxIngredientSuggestion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,27 +174,6 @@
     </Compile>
     <Compile Include="View\StorageManagement\AddIngredient.aspx.designer.cs">
       <DependentUpon>AddIngredient.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserManagement\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\UserManagement\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserManagement\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\UserManagement\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserManagement\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\UserManagement\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
