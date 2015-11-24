@@ -11,6 +11,8 @@ namespace FoodnStuff.View.RecipeManagement
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        Model.Recipe mRecipe = new Model.Recipe();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -18,7 +20,6 @@ namespace FoodnStuff.View.RecipeManagement
             if (Request["RecipeID"] != null)
             {
                 int recipeID = Convert.ToInt32(Request["RecipeID"]);
-                Model.Recipe mRecipe = new Model.Recipe();
                 mRecipe = Model.RecipeManagement.getRecipe(recipeID)[0];
                 lbRecipeName.Text = mRecipe.Name;
                 imgRecipe.ImageUrl = mRecipe.PicturePath;
@@ -39,6 +40,11 @@ namespace FoodnStuff.View.RecipeManagement
                 lbInstruction.Text = mRecipe.Instruction;
             }
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/View/RecipeManagement/CookingConfirmation.aspx?RecipeID=" + mRecipe.ID);
         }
     }
 }

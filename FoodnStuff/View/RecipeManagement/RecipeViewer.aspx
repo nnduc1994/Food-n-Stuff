@@ -26,11 +26,11 @@
                         </div>
                     </div>
                     <!--end of div rows ingredients-->
-                    <div class="container-fluid">
                         <label>Instruction</label><br />
                         <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
-                    </div>
                     <!--end of div instruction-->
+                <br /><br />
+                <asp:Button ID="Button1" runat="server" Text="Cook Now!" class="btn btn-danger btn-lg" OnClick="Button1_Click" />
             </form>
         </div>
         <!--end of div sub-container-->       
