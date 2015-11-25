@@ -21,7 +21,20 @@ namespace FoodnStuff.View.StorageManagement
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            if (Session["UID"] != null) {
+                int userID = Convert.ToInt16(Session["UID"]);
+                if (Request["AmountOfIngredient"] != null) {
+                    int amountIngredient = Convert.ToInt16(Request["AmountOfIngredient"]);
+                    for (int i = 1; i <= amountIngredient; i++)
+                    {
+                        if (Request["IngredientName" + i] != null && Request["IngredientAmount" + i] != null && Request.Form["AmountUnit" + i] != null && Request.Form["ExpiredDate" + i] != null)
+                        {
+                            Model.StorageManagement.AddIngredientToStorage(userID, Request["IngredientName" + i], double.Parse(Request["IngredientAmount" + i]), Convert.ToInt16(Request.Form["AmountUnit" + i]), Request.Form["ExpiredDate" + i].ToString());
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

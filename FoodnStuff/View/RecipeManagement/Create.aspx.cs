@@ -42,7 +42,7 @@ namespace FoodnStuff.View.RecipeManagement
                     int amountIngredient = Convert.ToInt16(Request["AmountOfINgredient"]);
                     for (int i = 1; i <= amountIngredient; i++)
                     {
-                        if (Request["IngredientName" + i] != null && Request["IngredientAmount" + i] != null && Request.Form["AmountUnit1"] != null)
+                        if (Request["IngredientName" + i] != null && Request["IngredientAmount" + i] != null && Request.Form["AmountUnit" + i] != null)
                         {
                             Model.RecipeManagement.AddIngredientToRecipe(Request["IngredientName" + i].ToString().ToLower(), double.Parse(Request["IngredientAmount" + i]), int.Parse(Request.Form["AmountUnit" + i]));
                         }

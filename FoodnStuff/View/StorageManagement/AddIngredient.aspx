@@ -25,7 +25,6 @@
                             </div>
                         </div>
                         <br />
-                        <input type="text" id="ExpiredDate" class="date"/>
                         <asp:DropDownList ID="DropDownList1" runat="server" class="form-control hidden-lg hidden-md hidden-sm hidden-xs" AutoPostBack="False"></asp:DropDownList>
                         <asp:Button ID="Button1" runat="server" Text="Add ingredient(s) to storage" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
                     </div>
@@ -74,10 +73,6 @@
 
     <script>
       
-        $('#ExpiredDate').datepicker({
-            'format': 'yyyy-m-d',
-            'autoclose': true
-        });
        
         ///Use for Ajax call
         var amountOfIngredient = 0;
@@ -156,8 +151,35 @@
             rowDivSecond.appendChild(divColMd5SecondAmount);
             rowDivSecond.appendChild(dropdownDiv);
 
+          
+
+            //Expired day here
+            var rowDivExpired = document.createElement("div");
+            rowDivExpired.style.cssText = "padding-bottom:2%;";
+            rowDivExpired.className = "row";
+            var divColMd5Expired = document.createElement("div");
+            divColMd5Expired.className = "col-md-5";
+            var labelExpried = document.createElement("label");
+            labelExpried.textContent = "Experied date:";
+            var divColMd5SecondExpired = document.createElement("div");
+            divColMd5SecondExpired.className = "col-md-6";
+            var expiredBox = document.createElement("input");
+            expiredBox.type = "text";
+            expiredBox.className = "form-control";
+            expiredBox.name = "ExpiredDate" + amountOfIngredient;
+            expiredBox.id = "ExpiredDate" + amountOfIngredient;
+            expiredBox.setAttribute("autocomplete", "off");
+    
+            divColMd5SecondExpired.appendChild(expiredBox);
+            divColMd5Expired.appendChild(labelExpried);
+
+            rowDivExpired.appendChild(divColMd5Expired);
+            rowDivExpired.appendChild(divColMd5SecondExpired);
+
+            ////Add everything to container
             container.appendChild(rowDiv);
             container.appendChild(rowDivSecond);
+            container.appendChild(rowDivExpired)
         }
 
         //Calling Ajax
