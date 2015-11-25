@@ -27,9 +27,9 @@
                     </div>
                     <!--end of div rows ingredients-->
                         <label>Instruction<br /></label><br />
-                                <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
-
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
+                        <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
+                        <br /><br />
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Cook now!" class="btn btn-lg btn-danger"/>
                     <!--end of div instruction-->
                 <br /><br />
             </form>
