@@ -44,14 +44,27 @@ namespace TestApplication
             //}
             //Console.ReadLine();
 
-            List<HistoryRecipe> l = RecipeHistoryManagement.GetRecList(3);
-            foreach (var r in l) {
-                Console.WriteLine(r.Name);
-                Console.WriteLine(r.RecipeID);
-                Console.WriteLine(r.CookingDate);
-                Console.WriteLine("----------------------------");
-            }
-            Console.ReadLine();
+            //List<HistoryRecipe> l = RecipeHistoryManagement.GetRecList(3);
+            //foreach (var r in l) {
+            //    Console.WriteLine(r.Name);
+            //    Console.WriteLine(r.RecipeID);
+            //    Console.WriteLine(r.CookingDate);
+            //    Console.WriteLine("----------------------------");
+            //}
+            //Console.ReadLine();
+
+            //List<Ingredient> IngredientList = new List<Ingredient>();
+
+            //IngredientList = StorageManagement.GetExpiredIngredient(2);
+
+            //for (int i = 0; i < IngredientList.Count; i++)
+            //{
+            //    Console.WriteLine(IngredientList[i].Name);
+            //    Console.WriteLine(IngredientList[i].Amount);
+            //    Console.WriteLine(IngredientList[i].Unit);
+            //    Console.WriteLine(IngredientList[i].ExpiredDay);
+            //}
+
         }
     }
 }
