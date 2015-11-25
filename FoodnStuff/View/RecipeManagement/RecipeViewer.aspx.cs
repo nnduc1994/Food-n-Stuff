@@ -16,7 +16,7 @@ namespace FoodnStuff.View.RecipeManagement
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //int recipeID = 1;
+            //int recipeID = 3;
             if (Request["RecipeID"] != null)
             {
                 int recipeID = Convert.ToInt32(Request["RecipeID"]);
@@ -26,16 +26,7 @@ namespace FoodnStuff.View.RecipeManagement
 
                 for (int i = 0; i < mRecipe.IngredientList.Count; i++)
                 {
-                    Model.Database myDatabase = new Model.Database();
-                    myDatabase.ReturnConnection();
-
-                    string command = "SELECT * FROM Unit WHERE ID =" + mRecipe.IngredientList[i].UnitID + ";";
-                    myDatabase.ExcuteQuery(command);
-                    OleDbDataReader reader = myDatabase.ExcuteQuery(command);
-                    reader.Read();
-                    string Unit = reader["Name"].ToString();
-
-                    lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + Unit + "s<br/>";
+                    lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + mRecipe.IngredientList[i].Unit + "s<br/>";
                 }
                 lbInstruction.Text = mRecipe.Instruction;
             }

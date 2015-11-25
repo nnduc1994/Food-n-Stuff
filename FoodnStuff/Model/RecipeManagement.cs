@@ -115,7 +115,7 @@ namespace FoodnStuff.Model
             }
         }
         
-        public static  void CreateRecipe(string Name, string Instruction, int creatorID)
+        public static int CreateRecipe(string Name, string Instruction, int creatorID)
         {
             int maxRecipeID = 0;
             Database myDatabase = new Database();
@@ -139,6 +139,8 @@ namespace FoodnStuff.Model
             command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID) VALUES ('"+ (maxRecipeID + 1) + "','" + Name + "','" + Instruction + "','" + creatorID +"');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
+            maxRecipeID++;
+            return maxRecipeID;
         }
   
         public static void AddRecipePicture(string path) {
@@ -229,13 +231,22 @@ namespace FoodnStuff.Model
                 }
                 for (int i = 0; i < idList.Count; i++)
                 {
-                    command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID =" + idList[i] + ";";
+                    command = "SELECT * FROM RecipeIngredientAmount WHERE IngredientID =" + idList[i] + " AND RecipeID =" + myRecipe.ID.ToString() + ";";
                     myDatabase.ExcuteQuery(command);
                     reader = myDatabase.ExcuteQuery(command);
                     reader.Read();
                     Ingredient ingredientObj = new Ingredient();
                     ingredientObj.Amount = Convert.ToDouble(reader["Amount"]);
-                    ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
+                    int UnitID = Convert.ToInt32(reader["UnitID"]);
+
+                    myDatabase.ReturnConnection();
+                    command = "SELECT * FROM Unit WHERE ID =" + UnitID + ";";
+                    myDatabase.ExcuteQuery(command);
+                    OleDbDataReader reader1 = myDatabase.ExcuteQuery(command);
+                    reader1.Read();
+                    string Unit = reader1["Name"].ToString();
+                    ingredientObj.Unit = Unit;
+
                     IngredientList.Add(ingredientObj);
 
 
@@ -279,7 +290,7 @@ namespace FoodnStuff.Model
     public class Ingredient{
          public string Name {get;set;}
          public double Amount {get; set;}
-         public int UnitID { get; set;}
+         public string Unit { get; set;}
          public string ExpiredDay { get; set; }
     }
 

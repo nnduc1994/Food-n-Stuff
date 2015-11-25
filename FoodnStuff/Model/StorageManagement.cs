@@ -77,7 +77,16 @@ namespace FoodnStuff.Model
                 {
                     Ingredient ingredientObj = new Ingredient();
                     ingredientObj.Amount = Convert.ToDouble(reader["Amount"]);
-                    ingredientObj.UnitID = Convert.ToInt32(reader["UnitID"]);
+                    int UnitID = Convert.ToInt32(reader["UnitID"]);
+
+                    myDatabase.ReturnConnection();
+                    command = "SELECT * FROM Unit WHERE ID =" + UnitID + ";";
+                    myDatabase.ExcuteQuery(command);
+                    OleDbDataReader reader2 = myDatabase.ExcuteQuery(command);
+                    reader2.Read();
+                    string Unit = reader2["Name"].ToString();
+                    ingredientObj.Unit = Unit;
+
                     ingredientObj.ExpiredDay = (reader["ExpiredDate"].ToString()).Substring(0,10);
                     ingredientObj.Name = IngredientName;
                     IngredientList.Add(ingredientObj);

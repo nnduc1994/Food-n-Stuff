@@ -11,7 +11,7 @@ namespace FoodnStuff.View.RecipeManagement
     public partial class CookingConfirmation : System.Web.UI.Page
     {
         //For hardcode testing
-        //int RecipeID = 1;
+        //int RecipeID = 3;
         //int UserID = 2;
         List<int> IDList = new List<int>();
         protected void Page_Load(object sender, EventArgs e)
@@ -34,17 +34,13 @@ namespace FoodnStuff.View.RecipeManagement
                     Model.Database myDatabase = new Model.Database();
                     myDatabase.ReturnConnection();
 
-                    string command = "SELECT * FROM Unit WHERE ID =" + mRecipe.IngredientList[i].UnitID + ";";
-                    myDatabase.ExcuteQuery(command);
-                    OleDbDataReader reader = myDatabase.ExcuteQuery(command);
-                    reader.Read();
-                    string Unit = reader["Name"].ToString();
+                    string Unit = mRecipe.IngredientList[i].Unit;
                     lbRecipeIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + Unit + "s<br/>";
 
                     //Get ID list for available ingredient
-                    command = "SELECT * FROM Ingredient WHERE Name ='" + mRecipe.IngredientList[i].Name + "';";
+                    string command = "SELECT * FROM Ingredient WHERE Name ='" + mRecipe.IngredientList[i].Name + "';";
                     myDatabase.ExcuteQuery(command);
-                    reader = myDatabase.ExcuteQuery(command);
+                    OleDbDataReader reader = myDatabase.ExcuteQuery(command);
                     reader.Read();
                     IDList.Add(Convert.ToInt32(reader["ID"]));
                 }
@@ -56,15 +52,7 @@ namespace FoodnStuff.View.RecipeManagement
             AvailableIngredientList = Model.StorageManagement.GetAvailableIngredient(IDList,UserID);
             for (int i = 0; i < AvailableIngredientList.Count; i++)
             {
-                Model.Database myDatabase = new Model.Database();
-                myDatabase.ReturnConnection();
-
-                string command = "SELECT * FROM Unit WHERE ID =" + AvailableIngredientList[i].UnitID + ";";
-                myDatabase.ExcuteQuery(command);
-                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
-                reader.Read();
-                string Unit = reader["Name"].ToString();
-
+                string Unit = AvailableIngredientList[i].Unit;
                 lbAvailableIngredient.Text += AvailableIngredientList[i].Name + " - Amount: " + AvailableIngredientList[i].Amount + " " + Unit + "s Expired day: " + AvailableIngredientList[i].ExpiredDay + "<br/>";
 
             }
