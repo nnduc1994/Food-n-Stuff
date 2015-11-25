@@ -26,7 +26,7 @@ namespace FoodnStuff.View.SearchResultManagement
 
             List<Recipe> recipeList = Model.RecipeManagement.getRecipe(null, queryString);
 
-            int numberRecordPerRow = 4;
+            int numberRecordPerRow = 3;
             int numberRows = recipeList.Count();
             if (numberRows * numberRecordPerRow < recipeList.Count())
             {
@@ -70,7 +70,7 @@ namespace FoodnStuff.View.SearchResultManagement
                             for (int u = 0; u < 3; u++)
                             {
                                 HtmlGenericControl ingredientParagraph = new HtmlGenericControl("p");
-                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
+                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " " + recipeList[i * numberRecordPerRow +j].IngredientList[u].Unit + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
                                 ingredientWrapper.Controls.Add(ingredientParagraph);
 
                                 if (u == 2 && u < recipeList[i * numberRecordPerRow + j].IngredientList.Count)
@@ -86,7 +86,7 @@ namespace FoodnStuff.View.SearchResultManagement
                             for (int u = 0; u < recipeList[i * numberRecordPerRow + j].IngredientList.Count; u++)
                             {
                                 HtmlGenericControl ingredientParagraph = new HtmlGenericControl("p");
-                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
+                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " "+ recipeList[i * numberRecordPerRow + j].IngredientList[u].Unit + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
                                 ingredientWrapper.Controls.Add(ingredientParagraph);
                             }
                         }

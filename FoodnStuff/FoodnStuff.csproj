@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\StorageManagement\AddIngredient.aspx" />
+    <Content Include="View\UserManagement\CookingHistory.aspx" />
     <Content Include="View\UserManagement\Edit.aspx" />
     <Content Include="View\UserManagement\Login.aspx" />
     <Content Include="View\UserManagement\Register.aspx" />
@@ -113,9 +114,6 @@
     </Compile>
     <Compile Include="View\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="View\Recipe Searcher\RecipeControl.ascx.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\RecipeManagement\CookingConfirmation.aspx.cs">
       <DependentUpon>CookingConfirmation.aspx</DependentUpon>
@@ -169,6 +167,13 @@
     </Compile>
     <Compile Include="View\StorageManagement\AddIngredient.aspx.designer.cs">
       <DependentUpon>AddIngredient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserManagement\CookingHistory.aspx.cs">
+      <DependentUpon>CookingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserManagement\CookingHistory.aspx.designer.cs">
+      <DependentUpon>CookingHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\UserManagement\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
