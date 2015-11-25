@@ -44,6 +44,14 @@ namespace TestApplication
             //}
             //Console.ReadLine();
 
+            List<HistoryRecipe> l = RecipeHistoryManagement.GetRecList(3);
+            foreach (var r in l) {
+                Console.WriteLine(r.Name);
+                Console.WriteLine(r.RecipeID);
+                Console.WriteLine(r.CookingDate);
+                Console.WriteLine("----------------------------");
+            }
+            Console.ReadLine();
         }
     }
 }
