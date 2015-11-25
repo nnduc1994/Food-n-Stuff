@@ -81,7 +81,6 @@
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="View\Index.aspx" />
-    <Content Include="View\Recipe Searcher\RecipeControl.ascx" />
     <Content Include="View\RecipeManagement\CookingConfirmation.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
     <Content Include="View\RecipeManagement\RecipeViewer.aspx" />
@@ -116,11 +115,7 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Recipe Searcher\RecipeControl.ascx.cs">
-      <DependentUpon>RecipeControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\Recipe Searcher\RecipeControl.ascx.designer.cs">
-      <DependentUpon>RecipeControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="View\RecipeManagement\CookingConfirmation.aspx.cs">
       <DependentUpon>CookingConfirmation.aspx</DependentUpon>
