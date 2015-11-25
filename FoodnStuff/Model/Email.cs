@@ -50,10 +50,10 @@ namespace FoodnStuff.Model
             }
         }
 
-        public void sendRemindEmail(int userID) {
+        public static void sendRemindEmail(int userID) {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "SELECT * FROM UserTable Where ID='" + userID + "'";
+            string command = "SELECT * FROM UserTable Where ID=" + userID + ";";
             var reader = myDatabase.ExcuteQuery(command);
             reader.Read();
 
@@ -63,9 +63,9 @@ namespace FoodnStuff.Model
 
             List<Ingredient> expiredIngredientList = Model.StorageManagement.GetExpiredIngredient(userID);
 
-            string message = "Hi, " + userObj.Name + "you have some food will expired today. Take a look" + "\t";
+            string message = "Hi, " + userObj.Name + " you have some food will expired today. Take a look" + System.Environment.NewLine + System.Environment.NewLine;
             foreach (Ingredient ing in expiredIngredientList) {
-                message += ing.Amount + " " + ing.Unit + " " + ing.Name + " Expired day " + ing.ExpiredDay + "\t";
+                message += ing.Amount + " " + ing.Unit + " " + ing.Name + " Expired day " + ing.ExpiredDay + System.Environment.NewLine;
             }
 
             Email.SendEmail("foodnstuffdemo@gmail.com", "FoodnStuff@support", userObj.Email, userObj.Name, "Expired food reminder", message);

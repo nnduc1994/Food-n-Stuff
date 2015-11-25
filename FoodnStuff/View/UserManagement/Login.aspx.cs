@@ -22,9 +22,12 @@ namespace FoodnStuff.View.UserManagement
         {
             if (this.IsValid)
             {
-                Response.Cookies["UserLogIn"]["UID"] = UM.Login(TextBox1.Text, TextBox2.Text);
-              
-                Response.Cookies["UserLogIn"].Expires = DateTime.Now.AddDays(1);
+                string userID = UM.Login(TextBox1.Text, TextBox2.Text);
+                Response.Cookies["UserLogIn"]["UID"] = userID;
+                if (Session["UID"] == null){
+                    Session["UID"] = userID;
+                }
+                Response.Cookies["UserLogIn"].Expires = DateTime.Now.AddDays(100);
                 Server.Transfer("Edit.aspx", true);
             }
         }

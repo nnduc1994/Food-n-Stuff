@@ -51,6 +51,19 @@ namespace FoodnStuff.View.UserManagement
                  }
         }
 
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/View/UserManagement/CookingHistory.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            if (Session["UID"] != null) {
+                int userID = Convert.ToInt16(Session["UID"]);
+                Model.Email.sendRemindEmail(userID);
+            }
+        }
+
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Cookies.Clear();
