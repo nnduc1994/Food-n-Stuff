@@ -29,13 +29,14 @@ namespace FoodnStuff.View.RecipeManagement
                 id = Convert.ToInt32(ID);
             }
 
-
             if (id > 0)
             {
+                int redirectID = 0;
+
                 //If missing info, dont create recipe
                 if (TextBox1 != null && TextBox5 != null)
                 {
-                    Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id);
+                    redirectID = Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id);
                 }
                 if (Request["AmountOfIngredient"] != null)
                 {
@@ -59,6 +60,8 @@ namespace FoodnStuff.View.RecipeManagement
                     //Write to datbase
                     Model.RecipeManagement.AddRecipePicture((Path.Combine("/Content/user_upload", pictureName)).Replace("\\", "/"));
                 }
+                Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + redirectID);
+
             }
         }
 
