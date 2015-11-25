@@ -51,6 +51,7 @@
                         </div>
                     </div>
                     <!--end div row Password -->
+                    <asp:Button ID="Button3" runat="server" Text="Button" />
                     <br />
                     <asp:Button ID="Button1" runat="server" Text="Update Info" class="btn btn-lg btn-danger" OnClick="Button1_Click1" />
                     <asp:Button ID="Button2" runat="server" Text="LogOut" class="btn btn-lg btn-danger" OnClick="Button2_Click" />
