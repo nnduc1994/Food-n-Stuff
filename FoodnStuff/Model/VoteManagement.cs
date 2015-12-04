@@ -9,24 +9,45 @@ namespace FoodnStuff.Model
     {
         //Create new row to vote table,
         public static void CreateVote(int UserID, int RecipeID, int Vote) {
-
-            //First need to query from the table if there is a row with the same UserID and RecipeID from parameters
-            //If no use command INSERT
-
-            //If not mean already exist vote from user, use UPDATE command
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string id = "";
+            string command = "SELECT * FROM Vote Where UserID=" + UserID + " AND RecipeID=" + RecipeID;
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            if (reader.HasRows == true)
+            {
+                id = reader["ID"].ToString();
+                command = "UPDATE Vote SET Vote='" + Vote + "' WHERE ID =" + id + ";";
+                myDatabase.ExcuteNonQuery(command);
+                myDatabase.CloseConnection();
+            }
+            else
+            {
+                command = "INSERT INTO Vote (RecipeID,UserID,Vote) VALUES ('" + RecipeID + "','" + UserID + "','" + Vote + "');";
+                myDatabase.ExcuteNonQuery(command);
+                myDatabase.CloseConnection();
+            }
         }
 
-        public int GetRecipeVote(int RecipeID) {
+        public static int GetRecipeVote(int RecipeID) {
             int averageVote = 0;
-
-            //This will contain all the vote belong to this recipe
-            List<int> AllVote = new List<int>();
-
-            //First get all vote belong to this recipe then add it to AllVote list, use AllVote.Add() function to add
-            // new item to the list
-
-            //Then you will need to calculate the average vote from the list and return it
-            
+            int count = 0;
+            int sum = 0;
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM Vote Where RecipeID=" + RecipeID + "";
+            var reader = myDatabase.ExcuteQuery(command);
+            bool notEOF = false;
+            notEOF = reader.Read();
+            while (notEOF)
+            {
+                count++;
+                sum = sum+Convert.ToInt32(reader["Vote"]);
+                notEOF = reader.Read();
+            }
+            myDatabase.CloseConnection();
+            averageVote = sum / count;
             return averageVote;
         }
 
