@@ -107,10 +107,12 @@
   <ItemGroup>
     <Compile Include="Model\Calculation.cs" />
     <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\PlanManagement.cs" />
     <Compile Include="Model\RecipeHistoryManagement.cs" />
     <Compile Include="Model\StorageManagement.cs" />
     <Compile Include="Model\UnitManagement.cs" />
     <Compile Include="Model\VoteManagement.cs" />
+    <Compile Include="Model\WishListManagement.cs" />
     <Compile Include="View\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
