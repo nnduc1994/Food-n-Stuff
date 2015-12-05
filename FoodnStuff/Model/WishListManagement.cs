@@ -36,7 +36,7 @@ namespace FoodnStuff.Model
            
             foreach (WishListRecipe wlr in wishRecipeList)
             {
-                command = "SELECT * FROM Recipe Where ID=" + wlr.RecipeId + "";
+                command = "SELECT Name FROM Recipe Where ID=" + wlr.RecipeId + "";
                 reader = myDatabase.ExcuteQuery(command);
                 notEOF = false;
                 notEOF = reader.Read();

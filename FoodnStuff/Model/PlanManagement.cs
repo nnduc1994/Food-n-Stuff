@@ -35,7 +35,7 @@ namespace FoodnStuff.Model
 
             foreach (PlanRecipe wlr in planRecipeList)
             {
-                command = "SELECT * FROM Recipe Where ID=" + wlr.RecipeId + "";
+                command = "SELECT Name FROM Recipe Where ID=" + wlr.RecipeId + "";
                 reader = myDatabase.ExcuteQuery(command);
                 notEOF = false;
                 notEOF = reader.Read();
