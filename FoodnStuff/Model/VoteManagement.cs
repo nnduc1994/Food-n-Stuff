@@ -31,9 +31,9 @@ namespace FoodnStuff.Model
         }
 
         public static int GetRecipeVote(int RecipeID) {
-            int averageVote = 0;
+            double averageVote = 0;
             int count = 0;
-            int sum = 0;
+            double sum = 0;
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
             string command = "SELECT * FROM Vote Where RecipeID=" + RecipeID + "";
@@ -43,12 +43,12 @@ namespace FoodnStuff.Model
             while (notEOF)
             {
                 count++;
-                sum = sum+Convert.ToInt32(reader["Vote"]);
+                sum = sum + Convert.ToInt32(reader["Vote"]);
                 notEOF = reader.Read();
             }
             myDatabase.CloseConnection();
-            averageVote = sum / count;
-            return averageVote;
+            averageVote = Math.Round((sum / count),0, MidpointRounding.AwayFromZero);
+            return Convert.ToInt32(averageVote);
         }
 
     }

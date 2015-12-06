@@ -31,6 +31,15 @@ namespace FoodnStuff.View.RecipeManagement {
         protected global::System.Web.UI.WebControls.Label lbRecipeName;
         
         /// <summary>
+        /// lbRecipePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRecipePrice;
+        
+        /// <summary>
         /// lbRecipeIngredient control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,14 @@ namespace FoodnStuff.View.RecipeManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRemind;
+        
+        /// <summary>
+        /// lbTotalCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalCost;
     }
 }
