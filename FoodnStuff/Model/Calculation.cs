@@ -179,6 +179,20 @@ namespace FoodnStuff.Model
             double result = 0;
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
+            string command = "SELECT * FROM Ingredient WHERE ID =" + IngredientID + ";";
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+            double PricePerKilo = Convert.ToDouble(reader["PricePerKilo"]);
+
+            command = "SELECT * FROM Unit WHERE ID =" + UnitID + ";";
+            myDatabase.ExcuteQuery(command);
+            reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+
+            result = amount * Convert.ToDouble(reader["RateToKilogram"]);
+            result = result * PricePerKilo;
+
             return result;
         }
     }

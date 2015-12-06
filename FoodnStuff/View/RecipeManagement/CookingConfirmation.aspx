@@ -24,6 +24,8 @@
                         <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" /><br />
                             <h3>Reminder </h3>
                             <asp:Label ID="lbRemind" runat="server" Text=""></asp:Label><br />
+                            <h3>Total expected cost:</h3>
+                            <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label>
                     </div>
                </div> 
             </form>
