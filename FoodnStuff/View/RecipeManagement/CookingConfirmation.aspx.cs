@@ -18,13 +18,14 @@ namespace FoodnStuff.View.RecipeManagement
         {
             lbRecipeIngredient.Text = "";
             lbAvailableIngredient.Text = "";
+            lbRecipePrice.Text = "";
             //if (Request["RecipeID"] != null && Session["UID"] != null)
             //{
             //    //Use this to call or calculate as you wish
             //    int RecipeID = Convert.ToInt16(Request["RecipeID"]);
             //    int UserID = Convert.ToInt16(Session["UID"]);
 
-
+            lbRecipePrice.Text = Model.Calculation.RecipeTotalPrice(RecipeID).ToString();
                 //Get Ingredient for Recipe
                 Model.Recipe mRecipe = new Model.Recipe();
                 mRecipe = Model.RecipeManagement.getRecipe(RecipeID)[0];

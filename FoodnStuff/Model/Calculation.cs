@@ -173,5 +173,13 @@ namespace FoodnStuff.Model
             }
             return total;
         }
+
+        public static double CalculatePrice(int IngredientID, double amount, int UnitID)
+        {
+            double result = 0;
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            return result;
+        }
     }
 }

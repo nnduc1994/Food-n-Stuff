@@ -10,7 +10,8 @@
                 <hr />
                 <br />
                 <div class="form-group">
-                    <asp:Label ID="lbRecipeName" runat="server" Text="Recipe Name"></asp:Label>
+                    <asp:Label ID="lbRecipeName" runat="server" Text="Recipe Name"></asp:Label><br />
+                    TotalPrice: <asp:Label ID="lbRecipePrice" runat="server" Text="Recipe Price"></asp:Label> euros
                     <div class="row">
                         <div class="col-md-6">
                             <h3>Recipe Ingredient </h3>
