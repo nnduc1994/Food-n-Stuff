@@ -31,7 +31,7 @@ namespace FoodnStuff.Model
         }
 
         public static int GetRecipeVote(int RecipeID) {
-            double averageVote = 0;
+            int averageVote = 0;
             int count = 0;
             double sum = 0;
             Database myDatabase = new Database();
@@ -47,8 +47,13 @@ namespace FoodnStuff.Model
                 notEOF = reader.Read();
             }
             myDatabase.CloseConnection();
-            averageVote = Math.Round((sum / count),0, MidpointRounding.AwayFromZero);
-            return Convert.ToInt32(averageVote);
+            averageVote = (int)Math.Round((sum / count),0, MidpointRounding.AwayFromZero);
+            if (averageVote >= 0)
+            {
+                return averageVote;
+            }
+            else
+                return 0;
         }
 
     }

@@ -56,6 +56,12 @@ namespace FoodnStuff.View.SearchResultManagement
                         HtmlGenericControl title = new HtmlGenericControl("label");
                         title.InnerText = recipeList[i * numberRecordPerRow + j].Name;
                         title.Attributes.Add("class", "recipe-name");
+
+                        //Get vote
+                        HtmlGenericControl vote = new HtmlGenericControl();
+                        vote.InnerText = recipeList[i * numberRecordPerRow + j].Vote.ToString();
+
+                        detailsDiv.Controls.Add(vote);
                         detailsDiv.Controls.Add(title);
 
                         HtmlGenericControl ingredientText = new HtmlGenericControl("p");

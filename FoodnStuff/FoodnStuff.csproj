@@ -68,6 +68,12 @@
     <Content Include="Content\bootcards-desktop.css" />
     <Content Include="Content\img\Image1.jpg" />
     <Content Include="Content\img\placeholder.jpg" />
+    <Content Include="Content\star\0.png" />
+    <Content Include="Content\star\1.png" />
+    <Content Include="Content\star\2.png" />
+    <Content Include="Content\star\3.png" />
+    <Content Include="Content\star\4.png" />
+    <Content Include="Content\star\5.png" />
     <Content Include="Content\user_upload\31aisan.jpg" />
     <Content Include="Content\user_upload\31bbq.jpg" />
     <Content Include="Content\user_upload\31chicken.jpg" />
@@ -239,15 +245,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>11155</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:11155/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://foodnstuffweb.azurewebsites.net/View/Index.aspx</CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
