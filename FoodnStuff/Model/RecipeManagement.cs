@@ -288,7 +288,7 @@ namespace FoodnStuff.Model
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
-            string command = "UPDATE Ingredient SET Price = " + Price.ToString() + " WHERE ID = " + IngredientID.ToString() + ";";
+            string command = "UPDATE Ingredient SET PricePerKilo = " + Price.ToString() + " WHERE ID = " + IngredientID.ToString() + ";";
             myDatabase.ExcuteNonQuery(command);
         }
     }
