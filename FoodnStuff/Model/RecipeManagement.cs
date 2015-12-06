@@ -264,8 +264,16 @@ namespace FoodnStuff.Model
                 reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 myRecipe.PicturePath = reader["Path"].ToString();
+
+                //Get recipe vote
+                command = "SELECT * FROM Vote WHERE RecipeID =" + myRecipe.ID.ToString() + " AND UserID =" + myRecipe.AuthorID.ToString() + ";";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
+                myRecipe.Vote = Convert.ToInt32(reader["Vote"]);
                 recipeList.Add(myRecipe);
                 EOF = mainReader.Read();
+
             }
             return recipeList;
         }
@@ -285,6 +293,7 @@ namespace FoodnStuff.Model
         public string Instruction { get; set; }
         public string PicturePath { get; set; }
         public List<Ingredient> IngredientList { get; set; }
+        public int Vote { get; set; }
     }
 
     public class Ingredient{
