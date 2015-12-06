@@ -29,6 +29,8 @@ namespace FoodnStuff.View.RecipeManagement
                     lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + mRecipe.IngredientList[i].Unit + "s<br/>";
                 }
                 lbInstruction.Text = mRecipe.Instruction;
+                Image1.ImageUrl = "/Content/star/" + mRecipe.Vote.ToString() + ".png";
+                Label1.Text = recipeID.ToString();
             }
 
         }
@@ -37,6 +39,15 @@ namespace FoodnStuff.View.RecipeManagement
         {
             Response.Redirect("/View/RecipeManagement/CookingConfirmation.aspx?RecipeID=" + mRecipe.ID);
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Session["UID"] != null) {
+                int userID = Convert.ToInt16(Session["UID"]);
+                Model.VoteManagement.CreateVote(userID, Convert.ToInt16(Label1.Text),Convert.ToInt16(TextBox1.Text) );
+                Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + Label1.Text);
+            }
         }
     }
 }

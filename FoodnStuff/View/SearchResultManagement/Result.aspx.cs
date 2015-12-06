@@ -58,10 +58,13 @@ namespace FoodnStuff.View.SearchResultManagement
                         title.Attributes.Add("class", "recipe-name");
 
                         //Get vote
-                        HtmlGenericControl vote = new HtmlGenericControl();
-                        vote.InnerText = recipeList[i * numberRecordPerRow + j].Vote.ToString();
-
-                        detailsDiv.Controls.Add(vote);
+                        HtmlGenericControl voteWrapper = new HtmlGenericControl("div");
+                        HtmlGenericControl vote = new HtmlGenericControl("img");
+                        string imgPath = "/Content/star/" + recipeList[i * numberRecordPerRow + j].Vote.ToString() + ".png";
+                        vote.Attributes.Add("src", imgPath);
+                        vote.Attributes.Add("class", "vote");
+                        voteWrapper.Controls.Add(vote);
+                        detailsDiv.Controls.Add(voteWrapper);
                         detailsDiv.Controls.Add(title);
 
                         HtmlGenericControl ingredientText = new HtmlGenericControl("p");

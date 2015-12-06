@@ -63,5 +63,8 @@
         color: #0060B6;
         text-decoration:none;
     }
+    .vote {
+        width: 50%;
+    }
 </style>
     </asp:Content>

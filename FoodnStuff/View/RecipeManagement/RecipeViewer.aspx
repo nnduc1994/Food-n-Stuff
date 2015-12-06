@@ -13,6 +13,8 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h2><asp:Label ID="lbRecipeName" runat="server" Text="<q>Recipe Name</q>"></asp:Label></h2>
+                            <asp:Image ID="Image1" runat="server" class="star"/>
+                            <br /><br />
                             <asp:Image ID="imgRecipe" runat="server" ImageUrl="~/Content/img/placeholder.jpg" style="max-width:100%;max-height:100%;"/>
                         </div>
                     </div>
@@ -32,6 +34,11 @@
                         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Cook now!" class="btn btn-lg btn-danger"/>
                     <!--end of div instruction-->
                 <br /><br />
+                <hr />
+                <i>What do you think about this Recipe? Give us your rating (from 1 to 5)</i>
+                <asp:TextBox ID="TextBox1" runat="server" class="form-control rate-box"></asp:TextBox>
+                <asp:Button ID="Button1" runat="server" Text="Rate" class="btn btn-info btn-sm" OnClick="Button1_Click"/>
+                <asp:Label ID="Label1" runat="server" Text="Label" style="display: none;"></asp:Label>
             </form>
         </div>
         <!--end of div sub-container-->       
@@ -88,6 +95,13 @@
     .rating > span:hover ~ span:before {
         content: "\2605";
         position: absolute;
+    }
+    .star {
+        width:50%;
+    }
+    .rate-box {
+        width:17%;
+        margin-bottom: 10px;
     }
 </style>
     </asp:Content>

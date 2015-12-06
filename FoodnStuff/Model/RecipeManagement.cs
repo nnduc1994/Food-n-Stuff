@@ -272,6 +272,7 @@ namespace FoodnStuff.Model
                 EOF = mainReader.Read();
 
             }
+            myDatabase.CloseConnection();
             return recipeList;
         }
         public static void UpdatePrice(int IngredientID,double Price)
@@ -280,6 +281,7 @@ namespace FoodnStuff.Model
             myDatabase.ReturnConnection();
             string command = "UPDATE Ingredient SET PricePerKilo = " + Price.ToString() + " WHERE ID = " + IngredientID.ToString() + ";";
             myDatabase.ExcuteNonQuery(command);
+            myDatabase.CloseConnection();
         }
     }
     
