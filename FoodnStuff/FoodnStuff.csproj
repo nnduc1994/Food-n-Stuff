@@ -68,19 +68,27 @@
     <Content Include="Content\bootcards-desktop.css" />
     <Content Include="Content\img\Image1.jpg" />
     <Content Include="Content\img\placeholder.jpg" />
-    <Content Include="Content\js\bootcards.js" />
-    <Content Include="Content\js\bootcards.min.js" />
+    <Content Include="Content\user_upload\31aisan.jpg" />
+    <Content Include="Content\user_upload\31bbq.jpg" />
+    <Content Include="Content\user_upload\31chicken.jpg" />
+    <Content Include="Content\user_upload\31deepchicken.jpg" />
+    <Content Include="Content\user_upload\31hotdog.jpg" />
+    <Content Include="Content\user_upload\31macaroni.jpg" />
+    <Content Include="Content\user_upload\31Meatballs-for-Spaghetti.jpg" />
+    <Content Include="Content\user_upload\31pizza.jpg" />
     <Content Include="Data\FoodnStuff.mdb" />
+    <Content Include="default.aspx" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootcards-desktop.css.map" />
+    <None Include="Properties\PublishProfiles\foodnstuffweb %282%29.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="View\Index.aspx" />
+    <Content Include="View\index.aspx" />
     <Content Include="View\RecipeManagement\CookingConfirmation.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
     <Content Include="View\RecipeManagement\RecipeViewer.aspx" />
@@ -105,6 +113,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Calculation.cs" />
     <Compile Include="Model\Email.cs" />
     <Compile Include="Model\PlanManagement.cs" />
@@ -113,12 +128,12 @@
     <Compile Include="Model\UnitManagement.cs" />
     <Compile Include="Model\VoteManagement.cs" />
     <Compile Include="Model\WishListManagement.cs" />
-    <Compile Include="View\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="View\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="View\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\RecipeManagement\CookingConfirmation.aspx.cs">
       <DependentUpon>CookingConfirmation.aspx</DependentUpon>
@@ -209,8 +224,9 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Content\user_upload\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -223,15 +239,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11155</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:11155/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://foodnstuffweb.azurewebsites.net/View/Index.aspx</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
