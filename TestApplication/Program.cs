@@ -66,6 +66,8 @@ namespace TestApplication
             //    Console.WriteLine(IngredientList[i].Unit);
             //    Console.WriteLine(IngredientList[i].ExpiredDay);
             //}
+            
+            //RecipeManagement.UpdatePrice(1, 2.5);
 
         }
     }

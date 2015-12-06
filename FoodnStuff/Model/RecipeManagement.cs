@@ -277,6 +277,13 @@ namespace FoodnStuff.Model
             }
             return recipeList;
         }
+        public static void UpdatePrice(int IngredientID,double Price)
+        {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "UPDATE Ingredient SET Price = " + Price.ToString() + " WHERE ID = " + IngredientID.ToString() + ";";
+            myDatabase.ExcuteNonQuery(command);
+        }
     }
     
 
