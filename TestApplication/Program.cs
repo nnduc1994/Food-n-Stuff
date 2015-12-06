@@ -38,8 +38,10 @@ namespace TestApplication
 
             //List<Recipe> myRecipe = new List<Recipe>();
             //myRecipe = RecipeManagement.getRecipe(null, "Chicken");
-            //foreach (var a in myRecipe) {
+            //foreach (var a in myRecipe)
+            //{
             //    Console.WriteLine(a.Name);
+            //    Console.WriteLine(a.Vote);
             //    Console.WriteLine("------------------");
             //}
             //Console.ReadLine();
@@ -64,6 +66,8 @@ namespace TestApplication
             //    Console.WriteLine(IngredientList[i].Unit);
             //    Console.WriteLine(IngredientList[i].ExpiredDay);
             //}
+            
+            //RecipeManagement.UpdatePrice(1, 2.5);
 
         }
     }

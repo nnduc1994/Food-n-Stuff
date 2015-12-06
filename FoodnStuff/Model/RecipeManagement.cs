@@ -264,10 +264,32 @@ namespace FoodnStuff.Model
                 reader = myDatabase.ExcuteQuery(command);
                 reader.Read();
                 myRecipe.PicturePath = reader["Path"].ToString();
+
+                //Get recipe vote
+                command = "SELECT * FROM Vote WHERE RecipeID =" + myRecipe.ID.ToString() +";";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                bool EOF2 = reader.Read();
+                List<int> VoteList = new List<int>();
+                while (EOF2)
+                {
+                    VoteList.Add(Convert.ToInt32(reader["Vote"]));
+                    EOF2 = reader.Read();
+                }
+                double Vote = VoteList.Average();
+                myRecipe.Vote = Vote;
                 recipeList.Add(myRecipe);
                 EOF = mainReader.Read();
+
             }
             return recipeList;
+        }
+        public static void UpdatePrice(int IngredientID,double Price)
+        {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "UPDATE Ingredient SET Price = " + Price.ToString() + " WHERE ID = " + IngredientID.ToString() + ";";
+            myDatabase.ExcuteNonQuery(command);
         }
     }
     
@@ -285,6 +307,7 @@ namespace FoodnStuff.Model
         public string Instruction { get; set; }
         public string PicturePath { get; set; }
         public List<Ingredient> IngredientList { get; set; }
+        public double Vote { get; set; }
     }
 
     public class Ingredient{
