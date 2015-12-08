@@ -17,9 +17,14 @@ namespace FoodnStuff.Model
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
             if (reader.Read())
             {
+                myDatabase.CloseConnection();
                 return true;
             }
-            else return false;
+            else
+            {
+                myDatabase.CloseConnection();
+                return false;
+            }
         }
 
         public static List<string> GetAvailableIngredientByName(string hint) {
@@ -33,6 +38,7 @@ namespace FoodnStuff.Model
                 returnString.Add(reader["Name"].ToString());
                 EOF = reader.Read();
             }
+            myDatabase.CloseConnection();
             return returnString;
         }
 

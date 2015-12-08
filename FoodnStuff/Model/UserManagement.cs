@@ -25,6 +25,7 @@ namespace FoodnStuff.Model
             {
                 data = reader[field].ToString();
             }
+            myDatabase.CloseConnection();
             return data;
         }
 
@@ -40,6 +41,7 @@ namespace FoodnStuff.Model
             {
                 contain = true;
             }
+            myDatabase.CloseConnection();
             return contain;
         }
 
@@ -55,6 +57,7 @@ namespace FoodnStuff.Model
             {
                 contain = true;
             }
+            myDatabase.CloseConnection();
             return contain;
         }
 
@@ -76,6 +79,7 @@ namespace FoodnStuff.Model
                     id = reader["ID"].ToString();
                 }
             }
+            myDatabase.CloseConnection();
             return id;
 
         }
@@ -106,6 +110,7 @@ namespace FoodnStuff.Model
 
             }
             myDatabase.ExcuteNonQuery(command);
+            myDatabase.CloseConnection();
         }
         public List<User> GetUser()
         {

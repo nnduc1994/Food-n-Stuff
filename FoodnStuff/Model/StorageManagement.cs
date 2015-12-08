@@ -94,6 +94,7 @@ namespace FoodnStuff.Model
                 }
 
             }
+            myDatabase.CloseConnection();
             return IngredientList;
         }
 
@@ -141,7 +142,7 @@ namespace FoodnStuff.Model
                 IngredientList[i].ExpiredDay = DateTime.Now.ToString().Substring(0, 10);
             }
 
-
+            myDatabase.CloseConnection();
             return IngredientList;
         }
 
@@ -189,7 +190,7 @@ namespace FoodnStuff.Model
                 IngredientList[i].Name = reader["Name"].ToString();
             }
 
-
+            myDatabase.CloseConnection();
             return IngredientList;
         }
     }

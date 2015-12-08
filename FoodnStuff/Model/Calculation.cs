@@ -17,9 +17,14 @@ namespace FoodnStuff.Model
             OleDbDataReader reader = myDatabase.ExcuteQuery(command);
             if (reader.Read())
             {
+                myDatabase.CloseConnection();
                 return true;
             }
-            else return false;
+            else
+            {
+                myDatabase.CloseConnection();
+                return false;
+            } 
         }
 
         public static double IngredientAmountSum(int IngredientID, int OwnerID)
@@ -48,7 +53,7 @@ namespace FoodnStuff.Model
                 reader.Read();
                 sum += amountList[i] * Convert.ToDouble(reader["RateToKilogram"]);
             }
-
+            myDatabase.CloseConnection();
             return sum;
         }
 
@@ -71,6 +76,8 @@ namespace FoodnStuff.Model
                 reader.Read();
 
                 RecipeAmount = RecipeAmount * Convert.ToDouble(reader["RateToKilogram"]);
+
+                myDatabase.CloseConnection();
                 //Value = 1 => Equal amount of ingredient in storage
                 if (StorageSum == RecipeAmount)
                 {
@@ -168,6 +175,7 @@ namespace FoodnStuff.Model
 
                 amount = myRecipe.IngredientList[i].Amount * Convert.ToDouble(reader["RateToKilogram"]);
                 total += amount * PricePerKilo;
+                myDatabase.CloseConnection();
 
 
             }
@@ -192,6 +200,7 @@ namespace FoodnStuff.Model
 
             result = amount * Convert.ToDouble(reader["RateToKilogram"]);
             result = result * PricePerKilo;
+            myDatabase.CloseConnection();
 
             return result;
         }

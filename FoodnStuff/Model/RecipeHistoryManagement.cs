@@ -13,6 +13,7 @@ namespace FoodnStuff.Model
             myDatabase.ReturnConnection();
             string command = "INSERT INTO CookingRecipeHistory (UserID,RecipeID,CookingDate) VALUES ('" + uid + "','" + rid + "','"   + DateTime.Now.Date.ToString() + "');";
             myDatabase.ExcuteNonQuery(command);
+            myDatabase.CloseConnection();
             
         }
         public static List<HistoryRecipe> GetRecList(int uid) 
