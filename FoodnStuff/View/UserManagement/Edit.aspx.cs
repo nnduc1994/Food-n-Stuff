@@ -53,7 +53,7 @@ namespace FoodnStuff.View.UserManagement
 
         protected void Button5_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/View/UserManagement/MyStorage.aspx");
+            Response.Redirect("/View/StorageManagement/MyStorage.aspx");
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -67,6 +67,11 @@ namespace FoodnStuff.View.UserManagement
         protected void Button2_Click1(object sender, EventArgs e)
         {
             Response.Redirect("/View/UserManagement/CookingHistory.aspx");
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/View/UserManagement/WishList.aspx");
         }
 
         protected void Button2_Click(object sender, EventArgs e)

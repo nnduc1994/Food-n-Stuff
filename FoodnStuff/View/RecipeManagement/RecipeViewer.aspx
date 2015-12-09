@@ -30,7 +30,7 @@
                         <label>Instruction<br /></label><br />
                         <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
                         <br /><br />
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Calute" class="btn btn-lg btn-danger"/>
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Calculate Cost" class="btn btn-lg btn-danger"/>
                         
                         <asp:Button ID="Button3" runat="server" Text="Save" class="btn btn-lg btn-info" OnClick="Button3_Click" />
                     <!--end of div instruction-->

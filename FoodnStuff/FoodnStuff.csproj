@@ -116,6 +116,7 @@
     <Content Include="View\UserManagement\Edit.aspx" />
     <Content Include="View\UserManagement\Login.aspx" />
     <Content Include="View\UserManagement\Register.aspx" />
+    <Content Include="View\UserManagement\WishList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="View\UserManagement\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserManagement\WishList.aspx.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserManagement\WishList.aspx.designer.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
