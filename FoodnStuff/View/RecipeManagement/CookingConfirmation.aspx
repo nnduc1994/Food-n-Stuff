@@ -15,16 +15,18 @@
                         <div class="col-md-6">
                             <h3>Recipe Ingredient </h3>
                             <asp:Label ID="lbRecipeIngredient" runat="server" Text=""></asp:Label>
+                              <h3>Reminder </h3>
+                            <asp:Label ID="lbRemind" runat="server" Text=""></asp:Label><br />
+                            <h3>Total expected cost:</h3>
+                            <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label>
                         </div>
                         <div class="col-md-6">
                             <h3>Available ingredient in Storage </h3>
                             <asp:Label ID="lbAvailableIngredient" runat="server" Text=""></asp:Label><br />
-                        </div>
                         <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" /><br />
-                            <h3>Reminder </h3>
-                            <asp:Label ID="lbRemind" runat="server" Text=""></asp:Label><br />
-                            <h3>Total expected cost:</h3>
-                            <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label>
+
+                        </div>
+                          
                     </div>
                </div> 
         </div>
