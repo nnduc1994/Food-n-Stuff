@@ -53,9 +53,12 @@
                     <br />
                     <asp:Button ID="Button4" runat="server" class="btn btn-lg btn-danger" Text="Trigger Reminder" OnClick="Button4_Click" />
                     <asp:Button ID="Button5" runat="server" class="btn btn-lg btn-danger" Text="My Storage" OnClick="Button5_Click" />
+                    <asp:Button ID="Button2" runat="server" Text="Cooking History" class="btn btn-lg btn-danger" OnClick="Button2_Click1" />
+                    <br /><br />
+                    <asp:Button ID="Button3" runat="server" Text="Wish List" class="btn btn-lg btn-danger"/>
+                    <asp:Button ID="Button6" runat="server" Text="Eating Plan" class="btn btn-lg btn-danger"/>
                     <br /><br /><br />
                     <asp:Button ID="Button1" runat="server" Text="Update Info" class="btn btn-lg btn-danger" OnClick="Button1_Click1" />
-                    <asp:Button ID="Button2" runat="server" Text="LogOut" class="btn btn-lg btn-danger" OnClick="Button2_Click" />
                 </div>
                 <!--end div form-group-->
         </div>

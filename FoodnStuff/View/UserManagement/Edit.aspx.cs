@@ -53,7 +53,7 @@ namespace FoodnStuff.View.UserManagement
 
         protected void Button5_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/View/UserManagement/CookingHistory.aspx");
+            Response.Redirect("/View/UserManagement/MyStorage.aspx");
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -64,12 +64,18 @@ namespace FoodnStuff.View.UserManagement
             }
         }
 
+        protected void Button2_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("/View/UserManagement/CookingHistory.aspx");
+        }
+
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Cookies.Clear();
+            if (Request.Cookies["UserLogIn"]["UID"] != null) {
+                Response.Cookies["UserLogIn"].Expires = DateTime.Now.AddDays(-1);
+            }
+       
             Server.Transfer("Login.aspx", true);
-           
-               
         }
     }
 }

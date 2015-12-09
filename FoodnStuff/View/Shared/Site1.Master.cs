@@ -22,35 +22,34 @@ namespace FoodnStuff.View.Shared
 
                     Session["UID"] = ID;
                     Session["Role"] = UM.getData("RoleId", ID);
-                    Session["Uname"] = UM.getData("UserName", ID);
-                    //Label1.Text = "Hello, " + Session["Uname"].ToString();
-                    //Add here code to show Welcome message on panel
+                    Session["Uname"] = UM.getData("Name", ID);
                 }
             }
-            else
-            {
-                //Add here code to show Reg and login buttons on panel
+
+            if (Session["UID"] != null) {
+                HyperLink1.Text = "Welcome, " + Session["Uname"].ToString();
+                HyperLink1.NavigateUrl = "/View/UserManagement/Edit.aspx";
+                Button1.Text = "Logout";
+            }
+            if (Session["UID"] == null){
+                HyperLink1.Text = "Login";
+                HyperLink1.NavigateUrl = "/View/UserManagement/Login.aspx";
+                Button1.Text = "Register";
             }
         }
 
         public void LogOut() {
             Session.Clear();
-            Response.Cookies.Clear();
+            Response.Cookies["UserLogIn"].Expires = DateTime.Now.AddDays(-1);
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            LogOut();
+        protected void Button1_Click(object sender, EventArgs e) {
+            if (Session["UID"] != null) {
+                LogOut();
+            }
+            else
+                Response.Redirect("/View/UserManagement/Register.aspx");
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("Register.aspx", true);
-        }
-
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("Login.aspx", true);
-        }
     }
 }
