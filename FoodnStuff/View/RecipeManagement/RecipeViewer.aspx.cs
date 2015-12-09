@@ -65,5 +65,14 @@ namespace FoodnStuff.View.RecipeManagement
                 Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + Label1.Text);
             }
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            if (Session["UID"] != null) {
+                int userId = Convert.ToInt16(Session["UID"]);
+                int recipeId = Convert.ToInt16(Label1.Text);
+                Model.PlanManagement.AddPlan(recipeId, userId,Convert.ToDateTime(TextBox2.Text));
+            }
+        }
     }
 }

@@ -31,10 +31,19 @@
                         <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
                         <br /><br />
                         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Calculate Cost" class="btn btn-lg btn-danger"/>
-                        
+            
                         <asp:Button ID="Button3" runat="server" Text="Save" class="btn btn-lg btn-info" OnClick="Button3_Click" />
-                    <!--end of div instruction-->
-                <br /><br />
+                        <br />
+                        <h4>Add to your eating plan</h4>
+
+
+                        <div class="form-group">
+                                <asp:TextBox ID="TextBox2" runat="server" class="form-control" style="width:30%;" placeholder="pick a date" ></asp:TextBox>
+                                <br />
+                                <asp:Button ID="Button4" runat="server" Text="Add to my plan" class="btn btn-lg btn-success " style="width:30%;" OnClick="Button4_Click" />
+                        </div>
+                    
+            
                 <hr />
                 <i>What do you think about this Recipe? Give us your rating (from 1 to 5)</i>
                 <asp:TextBox ID="TextBox1" runat="server" class="form-control rate-box"></asp:TextBox>
