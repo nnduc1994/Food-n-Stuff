@@ -4,7 +4,6 @@
     <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6 sub-container">
-            <form id="form1" runat="server">
                 <h1>Cooking History</h1>
                 <hr />
                 <br />
@@ -12,7 +11,6 @@
                     <div runat="server" id ="wrapper"></div>
                   </div> 
                 <!--end div form-group-->
-            </form>
         </div>
         <!--end div col-md-7-->
     </div>

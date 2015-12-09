@@ -2,7 +2,6 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
         <div class="container">
             <div class="row">
             <div class="col-md-offset-3 col-md-7">
@@ -28,7 +27,6 @@
                 <asp:Panel ID="Panel1" runat="server"></asp:Panel>   
             </div>
         </div>
-    </form>
     
     <style>
         .container {

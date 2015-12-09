@@ -4,7 +4,6 @@
         <div class="row">
             
             <div class="col-md-offset-2 col-md-8 sub-container">
-                <form id="form1" runat="server">
                     <h1>Add Ingredient to Storage</h1>
                     <hr />
                     <br />
@@ -29,7 +28,6 @@
                         <asp:Button ID="Button1" runat="server" Text="Add ingredient(s) to storage" class="btn btn-lg btn-danger" OnClick="Button1_Click" />
                     </div>
                     <!--end div form-group-->
-                </form>
             </div>
             <!--end div col-md-7-->
         </div>

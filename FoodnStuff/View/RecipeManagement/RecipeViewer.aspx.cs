@@ -12,10 +12,10 @@ namespace FoodnStuff.View.RecipeManagement
     public partial class WebForm1 : System.Web.UI.Page
     {
         Model.Recipe mRecipe = new Model.Recipe();
+        public bool AddToWishListYet;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //int recipeID = 3;
             if (Request["RecipeID"] != null)
             {
@@ -31,6 +31,13 @@ namespace FoodnStuff.View.RecipeManagement
                 lbInstruction.Text = mRecipe.Instruction;
                 Image1.ImageUrl = "/Content/star/" + mRecipe.Vote.ToString() + ".png";
                 Label1.Text = recipeID.ToString();
+                if (Session["UID"] != null) {
+                    int userID = Convert.ToInt16(Session["UID"]);
+                    AddToWishListYet = Model.WishListManagement.CheckAdded(recipeID, userID);
+                    if (AddToWishListYet != false) {
+                        Button3.Attributes.Add("style", "display:none");
+                    }
+                }
             }
 
         }
@@ -46,6 +53,15 @@ namespace FoodnStuff.View.RecipeManagement
             if (Session["UID"] != null) {
                 int userID = Convert.ToInt16(Session["UID"]);
                 Model.VoteManagement.CreateVote(userID, Convert.ToInt16(Label1.Text),Convert.ToInt16(TextBox1.Text) );
+                Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + Label1.Text);
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            if (Session["UID"] != null) {
+                int userID = Convert.ToInt16(Session["UID"]);
+                Model.WishListManagement.AddToWishList(Convert.ToInt16(Label1.Text), userID);
                 Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + Label1.Text);
             }
         }

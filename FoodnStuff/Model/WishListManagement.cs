@@ -58,6 +58,21 @@ namespace FoodnStuff.Model
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
         }
+
+        public static bool CheckAdded(int RecipeID, int UserID) {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT ID FROM WishList WHERE RecipeID=" + RecipeID + " AND UserID=" + UserID + "";
+            var reader = myDatabase.ExcuteQuery(command);
+            if (reader.Read())
+            {
+                myDatabase.CloseConnection();
+                return true;
+            }
+            else
+                myDatabase.CloseConnection();
+                return false;
+        }
     }
 
     public class WishListRecipe

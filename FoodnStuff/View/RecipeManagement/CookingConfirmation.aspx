@@ -5,7 +5,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-md-8 sub-container">
-            <form id="form1" runat="server">
                 <h1>Cooking Confirmation</h1>
                 <hr />
                 <br />
@@ -28,7 +27,6 @@
                             <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label>
                     </div>
                </div> 
-            </form>
         </div>
         <!--end of div sub-container-->       
     </div>

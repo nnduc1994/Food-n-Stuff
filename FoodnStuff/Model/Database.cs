@@ -19,17 +19,17 @@ namespace FoodnStuff.Model
         {
             
             //Local
-            //projectPath = @"C:\Users\Anakom\Source\Repos\Food-n-Stuff\FoodnStuff";
+            projectPath = @"C:\Users\Anakom\Source\Repos\Food-n-Stuff\FoodnStuff";
             //Production
-            projectPath = Environment.GetEnvironmentVariable("HOME").ToString();
+            //projectPath = Environment.GetEnvironmentVariable("HOME").ToString();
 
             //Local
-            //connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
-            //     @"Data Source = " + projectPath + @"\Data\FoodnStuff.mdb;";
+            connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
+                @"Data Source = " + projectPath + @"\Data\FoodnStuff.mdb;";
 
             //Production
-            connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
-                @"Data Source = " + projectPath + @"\site\wwwroot\Data\FoodnStuff.mdb;";
+            //connstr = "Provider = Microsoft.Jet.OLEDB.4.0;" +
+              //  @"Data Source = " + projectPath + @"\site\wwwroot\Data\FoodnStuff.mdb;";
 
             //OleDbConnection requires namespace System.Data.OleDb
             myConnection = new OleDbConnection();

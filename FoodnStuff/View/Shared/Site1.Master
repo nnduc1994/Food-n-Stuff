@@ -17,9 +17,11 @@
 <body>
    
     <div class="grey-filter">
+         <form id="form1" runat="server">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
+            
         </asp:ContentPlaceHolder>
+       </form>
     </div>
       
     <!-- Script Section -->

@@ -4,7 +4,6 @@
     <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6 sub-container">
-            <form id="form1" runat="server">
                 <h1>EDIT PROFILE</h1>
                 <hr />
                 <br />
@@ -59,7 +58,6 @@
                     <asp:Button ID="Button2" runat="server" Text="LogOut" class="btn btn-lg btn-danger" OnClick="Button2_Click" />
                 </div>
                 <!--end div form-group-->
-            </form>
         </div>
         <!--end div col-md-7-->
     </div>

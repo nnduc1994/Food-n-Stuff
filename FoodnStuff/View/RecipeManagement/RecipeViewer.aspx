@@ -5,8 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-md-8 sub-container">
-            <form id="form1" runat="server">
-                <h1>RECIPE VIEWER</h1>
+                <h1>RECIPE DETAILS</h1>
                 <hr />
                 <br />
                 <div class="form-group">
@@ -31,7 +30,9 @@
                         <label>Instruction<br /></label><br />
                         <asp:Label ID="lbInstruction" runat="server" Text=""></asp:Label>
                         <br /><br />
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Cook now!" class="btn btn-lg btn-danger"/>
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Calute" class="btn btn-lg btn-danger"/>
+                        
+                        <asp:Button ID="Button3" runat="server" Text="Save" class="btn btn-lg btn-info" OnClick="Button3_Click" />
                     <!--end of div instruction-->
                 <br /><br />
                 <hr />
@@ -39,7 +40,6 @@
                 <asp:TextBox ID="TextBox1" runat="server" class="form-control rate-box"></asp:TextBox>
                 <asp:Button ID="Button1" runat="server" Text="Rate" class="btn btn-info btn-sm" OnClick="Button1_Click"/>
                 <asp:Label ID="Label1" runat="server" Text="Label" style="display: none;"></asp:Label>
-            </form>
         </div>
         <!--end of div sub-container-->       
     </div>
@@ -104,4 +104,5 @@
         margin-bottom: 10px;
     }
 </style>
+
     </asp:Content>

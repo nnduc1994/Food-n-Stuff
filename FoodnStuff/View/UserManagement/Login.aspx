@@ -4,7 +4,6 @@
     <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6 sub-container">
-            <form id="form2" runat="server">
                 <h1>LOGIN</h1>
                 <hr />
                 <br />
@@ -33,7 +32,6 @@
                     <asp:Button ID="Button1" runat="server" Text="Login" class="btn btn-lg btn-danger" OnClick="Button1_Click"/>
                 </div>
                 <!--end div form-group-->
-            </form>
         </div>
         <!--end div col-md-7-->
     </div>
