@@ -92,8 +92,11 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\fullcalendar.css" />
+    <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="View\index.aspx" />
     <Content Include="View\RecipeManagement\CookingConfirmation.aspx" />
     <Content Include="View\RecipeManagement\Create.aspx" />
@@ -115,6 +118,7 @@
     <Content Include="View\UserManagement\CookingHistory.aspx" />
     <Content Include="View\UserManagement\Edit.aspx" />
     <Content Include="View\UserManagement\Login.aspx" />
+    <Content Include="View\UserManagement\Plan.aspx" />
     <Content Include="View\UserManagement\Register.aspx" />
     <Content Include="View\UserManagement\WishList.aspx" />
     <Content Include="Web.config" />
@@ -222,6 +226,13 @@
     </Compile>
     <Compile Include="View\UserManagement\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserManagement\Plan.aspx.cs">
+      <DependentUpon>Plan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserManagement\Plan.aspx.designer.cs">
+      <DependentUpon>Plan.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\UserManagement\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

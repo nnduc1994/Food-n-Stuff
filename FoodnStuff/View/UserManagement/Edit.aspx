@@ -56,7 +56,7 @@
                     <asp:Button ID="Button2" runat="server" Text="Cooking History" class="btn btn-lg btn-danger" OnClick="Button2_Click1" />
                     <br /><br />
                     <asp:Button ID="Button3" runat="server" Text="Wish List" class="btn btn-lg btn-danger" OnClick="Button3_Click"/>
-                    <asp:Button ID="Button6" runat="server" Text="Eating Plan" class="btn btn-lg btn-danger"/>
+                    <asp:Button ID="Button6" runat="server" Text="Eating Plan" class="btn btn-lg btn-danger" OnClick="Button6_Click"/>
                     <br /><br /><br />
                     <asp:Button ID="Button1" runat="server" Text="Update Info" class="btn btn-lg btn-danger" OnClick="Button1_Click1" />
                 </div>

@@ -74,6 +74,12 @@ namespace FoodnStuff.View.UserManagement
             Response.Redirect("/View/UserManagement/WishList.aspx");
         }
 
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/View/UserManagement/Plan.aspx");
+
+        }
+
         protected void Button2_Click(object sender, EventArgs e)
         {
             if (Request.Cookies["UserLogIn"]["UID"] != null) {
