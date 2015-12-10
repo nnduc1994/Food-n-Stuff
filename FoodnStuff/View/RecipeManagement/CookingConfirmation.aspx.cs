@@ -228,8 +228,10 @@ namespace FoodnStuff.View.RecipeManagement
                     myDatabase.CloseConnection();
             }
                 if (CheckBox1.Checked)
-                {
-                    string body = lbRemind.Text;
+               {
+                    string body = lbRecipeIngredient.Text;
+                    body = body.Replace("<br/>", System.Environment.NewLine);
+                    body += lbRemind.Text;
                     body = body.Replace("<br/>", System.Environment.NewLine);
                     int userID = Convert.ToInt16(Session["UID"]);
                     Model.Email.sendShoppingEmail(userID, body);
