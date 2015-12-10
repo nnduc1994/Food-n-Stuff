@@ -224,10 +224,18 @@ namespace FoodnStuff.View.RecipeManagement
 
                         break;
                 }
-                myDatabase.CloseConnection();
+                 
+                    myDatabase.CloseConnection();
             }
+                if (CheckBox1.Checked)
+                {
+                    string body = lbRemind.Text;
+                    body = body.Replace("<br/>", System.Environment.NewLine);
+                    int userID = Convert.ToInt16(Session["UID"]);
+                    Model.Email.sendShoppingEmail(userID, body);
+                }
 
-        }
+            }
         }
     }
 }

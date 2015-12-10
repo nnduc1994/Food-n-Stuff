@@ -23,6 +23,7 @@
                         <div class="col-md-6">
                             <h3>Available ingredient in Storage </h3>
                             <asp:Label ID="lbAvailableIngredient" runat="server" Text=""></asp:Label><br />
+                            <asp:CheckBox ID="CheckBox1" runat="server" /> Email Reminder <br /><br />
                         <asp:Button ID="Button1" runat="server" Text="Cook now!" class="btn btn-lg btn-danger" OnClick="Button1_Click" /><br />
 
                         </div>

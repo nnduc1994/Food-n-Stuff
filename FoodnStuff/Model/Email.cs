@@ -72,5 +72,25 @@ namespace FoodnStuff.Model
 
             myDatabase.CloseConnection();
         }
+
+        public static void sendShoppingEmail(int userID, string reminder)
+        {
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM UserTable Where ID=" + userID + ";";
+            var reader = myDatabase.ExcuteQuery(command);
+            reader.Read();
+
+            User userObj = new User();
+            userObj.Name = reader["Name"].ToString();
+            userObj.Email = reader["Email"].ToString();
+
+
+            string message = "Hi, " + userObj.Name + " this is a reminder for you when go shop for food" + System.Environment.NewLine + System.Environment.NewLine + reminder;
+
+            Email.SendEmail("foodnstuffdemo@gmail.com", "FoodnStuff@support", userObj.Email, userObj.Name, "Shopping food reminder", message);
+
+            myDatabase.CloseConnection();
+        }
     }
 }
