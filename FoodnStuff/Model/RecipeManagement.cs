@@ -121,7 +121,7 @@ namespace FoodnStuff.Model
             }
         }
         
-        public static int CreateRecipe(string Name, string Instruction, int creatorID)
+        public static int CreateRecipe(string Name, string Instruction, int creatorID, int Duration)
         {
             int maxRecipeID = 0;
             Database myDatabase = new Database();
@@ -142,7 +142,7 @@ namespace FoodnStuff.Model
                 maxRecipeID = recipeIDList.Max();
             }
 
-            command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID) VALUES ('"+ (maxRecipeID + 1) + "','" + Name + "','" + Instruction + "','" + creatorID +"');";
+            command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID, Duration) VALUES ('"+ (maxRecipeID + 1) + "','" + Name + "','" + Instruction + "','" + creatorID + "','" + Duration + "');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
             maxRecipeID++;
@@ -212,6 +212,7 @@ namespace FoodnStuff.Model
                 myRecipe.Instruction = mainReader["Instruction"].ToString();
                 myRecipe.AuthorID = Convert.ToInt32(mainReader["CreatedID"]);
                 myRecipe.ID = Convert.ToInt32(mainReader["ID"]);
+                myRecipe.Duration = Convert.ToInt32(mainReader["Duration"]);
                 //Get AuthorName
 
                 command = "SELECT * FROM UserTable WHERE ID =" + myRecipe.AuthorID.ToString() + ";";
@@ -306,6 +307,7 @@ namespace FoodnStuff.Model
         public string PicturePath { get; set; }
         public List<Ingredient> IngredientList { get; set; }
         public int Vote { get; set; }
+        public int Duration { get; set; }
     }
 
     public class Ingredient{
