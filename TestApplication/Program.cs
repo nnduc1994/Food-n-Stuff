@@ -71,6 +71,22 @@ namespace TestApplication
 
             //Console.WriteLine(Calculation.RecipeTotalPrice(7));
 
+            //List<int> IDList = new List<int>();
+            //IDList.Add(1);
+            //IDList.Add(2);
+            //IDList.Add(3);
+            //IDList.Add(4);
+
+            //List<Category> CategoryList = new List<Category>();
+            //CategoryList = RecipeManagement.GetCategory(IDList);
+            //for (int i = 0; i < CategoryList.Count; i++)
+            //{
+            //    Console.WriteLine(CategoryList[i].ID);
+            //    Console.WriteLine(CategoryList[i].Name);
+            //    Console.WriteLine(CategoryList[i].ImagePath);
+            //}
+
+
         }
     }
 }

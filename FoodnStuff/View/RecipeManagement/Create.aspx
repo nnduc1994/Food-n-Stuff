@@ -33,7 +33,8 @@
                             </div>
                         </div>
                         <br />
-                          
+                         
+                        Duration:<asp:TextBox ID="TextBox6" runat="server"></asp:TextBox> 
                         
                         <div class="row">
                             <div class="col-md-5">

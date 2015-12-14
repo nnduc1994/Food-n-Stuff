@@ -36,7 +36,7 @@ namespace FoodnStuff.View.RecipeManagement
                 //If missing info, dont create recipe
                 if (TextBox1 != null && TextBox5 != null)
                 {
-                    redirectID = Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id);
+                    redirectID = Model.RecipeManagement.CreateRecipe(TextBox1.Text, TextBox5.Text, id,Convert.ToInt32(TextBox6.Text));
                 }
                 if (Request["AmountOfIngredient"] != null)
                 {

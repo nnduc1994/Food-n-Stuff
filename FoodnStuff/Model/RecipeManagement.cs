@@ -290,6 +290,27 @@ namespace FoodnStuff.Model
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
         }
+        public static List<Category> GetCategory(List<int> IDList)
+        {
+            List<Category> CategoryList = new List<Category>();
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "";
+            
+            for (int i = 0; i < IDList.Count; i++)
+            {
+                Category myCategory = new Category();
+                command = "SELECT * FROM Category WHERE ID =" + IDList[i] + ";";
+                OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+                reader.Read();
+                myCategory.ID = Convert.ToInt32(reader["ID"]);
+                myCategory.Name = reader["Name"].ToString();
+                myCategory.ImagePath = reader["ImagePath"].ToString();
+                CategoryList.Add(myCategory);
+            }
+            myDatabase.CloseConnection();
+                return CategoryList;
+        }
     }
     
 
@@ -308,6 +329,7 @@ namespace FoodnStuff.Model
         public List<Ingredient> IngredientList { get; set; }
         public int Vote { get; set; }
         public int Duration { get; set; }
+        public List<Category> CategoryList { get; set; }
     }
 
     public class Ingredient{
@@ -317,5 +339,12 @@ namespace FoodnStuff.Model
          public string ExpiredDay { get; set; }
     }
 
-    
+    public class Category
+    {
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string ImagePath {get; set;}
+    }
+        
+
 }
