@@ -272,6 +272,20 @@ namespace FoodnStuff.Model
                 reader.Read();
                 myRecipe.PicturePath = reader["Path"].ToString();
 
+                //Get category list
+
+                command = "SELECT * FROM RecipeCategory WHERE RecipeID =" + myRecipe.ID.ToString() + ";";
+                myDatabase.ExcuteQuery(command);
+                reader = myDatabase.ExcuteQuery(command);
+                bool EOF2 = reader.Read();
+                List<int> idList1 = new List<int>();
+                while (EOF2)
+                {
+                    idList1.Add(Convert.ToInt32(reader["CategoryID"]));
+                    EOF2 = reader.Read();
+                }
+                myRecipe.CategoryList = GetCategory(idList1);
+
                 //Get recipe vote
                 int Vote = VoteManagement.GetRecipeVote(Convert.ToInt32(myRecipe.ID));
                 myRecipe.Vote = Vote;
@@ -310,6 +324,25 @@ namespace FoodnStuff.Model
             }
             myDatabase.CloseConnection();
                 return CategoryList;
+        }
+        public static List<Category> GetAllCategory()
+        {
+            List<Category> CategoryList = new List<Category>();
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM Category;";
+            myDatabase.ExcuteQuery(command);
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            bool EOF = reader.Read();
+            List<int> idList = new List<int>();
+            while (EOF)
+            {
+                idList.Add(Convert.ToInt32(reader["ID"]));
+                EOF = reader.Read();
+            }
+            CategoryList = GetCategory(idList);
+            myDatabase.CloseConnection();
+            return CategoryList;
         }
     }
     
