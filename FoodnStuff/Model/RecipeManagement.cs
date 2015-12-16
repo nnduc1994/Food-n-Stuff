@@ -121,7 +121,7 @@ namespace FoodnStuff.Model
             }
         }
         
-        public static int CreateRecipe(string Name, string Instruction, int creatorID, int Duration)
+        public static int CreateRecipe(string Name, string Instruction, int creatorID, int Duration, List<int> CategoryIDList)
         {
             int maxRecipeID = 0;
             Database myDatabase = new Database();
@@ -144,6 +144,14 @@ namespace FoodnStuff.Model
 
             command = "INSERT INTO Recipe (ID, Name, Instruction, CreatedID, Duration) VALUES ('"+ (maxRecipeID + 1) + "','" + Name + "','" + Instruction + "','" + creatorID + "','" + Duration + "');";
             myDatabase.ExcuteNonQuery(command);
+
+            //Add Category Recipe
+
+            for (int i = 0; i < CategoryIDList.Count; i++)
+            {
+                command = "INSERT INTO RecipeCategory (RecipeID, CategoryID) VALUES ('" + (maxRecipeID + 1) + "','" + CategoryIDList[i] + "');";
+                myDatabase.ExcuteNonQuery(command);
+            }
             myDatabase.CloseConnection();
             maxRecipeID++;
             return maxRecipeID;
