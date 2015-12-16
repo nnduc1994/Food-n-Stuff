@@ -11,25 +11,22 @@ namespace FoodnStuff.View.RecipeManagement
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        Model.Recipe mRecipe = new Model.Recipe();
+        public Model.Recipe mRecipe = new Model.Recipe();
         public bool AddToWishListYet;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            for (int i = 1; i <= 5; i++) {
+                DropDownList1.Items.Add(i.ToString());
+                DropDownList1.Items[i - 1].Value = i.ToString();
+            }
+
             //int recipeID = 3;
             if (Request["RecipeID"] != null)
             {
                 int recipeID = Convert.ToInt32(Request["RecipeID"]);
                 mRecipe = Model.RecipeManagement.getRecipe(recipeID)[0];
-                lbRecipeName.Text = mRecipe.Name;
-                imgRecipe.ImageUrl = mRecipe.PicturePath;
-
-                for (int i = 0; i < mRecipe.IngredientList.Count; i++)
-                {
-                    lbIngredient.Text += mRecipe.IngredientList[i].Name + " - Amount: " + mRecipe.IngredientList[i].Amount + " " + mRecipe.IngredientList[i].Unit + "s<br/>";
-                }
-                lbInstruction.Text = mRecipe.Instruction;
-                Image1.ImageUrl = "/Content/star/" + mRecipe.Vote.ToString() + ".png";
+             
                 Label1.Text = recipeID.ToString();
                 if (Session["UID"] != null) {
                     int userID = Convert.ToInt16(Session["UID"]);
@@ -52,7 +49,7 @@ namespace FoodnStuff.View.RecipeManagement
         {
             if (Session["UID"] != null) {
                 int userID = Convert.ToInt16(Session["UID"]);
-                Model.VoteManagement.CreateVote(userID, Convert.ToInt16(Label1.Text),Convert.ToInt16(TextBox1.Text) );
+                Model.VoteManagement.CreateVote(userID, Convert.ToInt16(Label1.Text),Convert.ToInt16(DropDownList1.SelectedValue) );
                 Response.Redirect("/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + Label1.Text);
             }
         }
