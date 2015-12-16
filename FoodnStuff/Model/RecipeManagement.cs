@@ -63,7 +63,7 @@ namespace FoodnStuff.Model
                 maxingredientID = idList.Max();
             }
             
-            command = "INSERT INTO Ingredient (ID, Name, Description) VALUES ('" + (maxingredientID + 1) + "','" + Name + "','" + Description + "');";
+            command = "INSERT INTO Ingredient (ID, Name, Description, PricePerKilo) VALUES ('" + (maxingredientID + 1) + "','" + Name + "','" + Description + "','" + 0 + "');";
             myDatabase.ExcuteNonQuery(command);
             myDatabase.CloseConnection();
         }
