@@ -117,7 +117,7 @@ namespace FoodnStuff.View.RecipeManagement
 
                         double remain = RecipeAmount1 - StorageSum;
                         remain = remain / (Convert.ToDouble(reader["RateToKilogram"]));
-
+                        remain = Math.Round(remain, 2, MidpointRounding.AwayFromZero);
                         cost2 = Model.Calculation.CalculatePrice(IDList[i], remain, UnitID);
                         TotalCost += cost2;
 
