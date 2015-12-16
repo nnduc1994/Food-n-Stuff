@@ -64,8 +64,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\category\daily.jpg" />
+    <Content Include="Content\category\diet.jpg" />
+    <Content Include="Content\category\family.jpg" />
+    <Content Include="Content\category\gym.jpg" />
+    <Content Include="Content\category\party.jpg" />
     <Content Include="Content\img\background.jpg" />
     <Content Include="Content\bootcards-desktop.css" />
+    <Content Include="Content\img\banner.jpg" />
+    <Content Include="Content\img\banner2.jpg" />
+    <Content Include="Content\img\banner3.jpg" />
     <Content Include="Content\img\Image1.jpg" />
     <Content Include="Content\img\placeholder.jpg" />
     <Content Include="Content\star\0.png" />
@@ -74,6 +82,7 @@
     <Content Include="Content\star\3.png" />
     <Content Include="Content\star\4.png" />
     <Content Include="Content\star\5.png" />
+    <Content Include="Content\star\star.png" />
     <Content Include="Content\user_upload\31aisan.jpg" />
     <Content Include="Content\user_upload\31bbq.jpg" />
     <Content Include="Content\user_upload\31chicken.jpg" />

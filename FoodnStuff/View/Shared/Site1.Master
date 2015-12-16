@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta  name="author" content="Winning Team - LAMK"/>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
      <!--jquery min-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -16,9 +16,9 @@
 </head>
 <body>
    
-    <div class="grey-filter">
+    <div>
          <form id="form1" runat="server">
-   <nav class="navbar navbar-default" style="background-color:#F17928; border:none; text-color:white;">
+   <nav class="navbar navbar-default" style="background-color:rgba(241, 121, 40, 0.8); border:none; text-color:white;">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -57,16 +57,17 @@
 
 <style>
     .grey-filter {
-        background-color:rgba(19, 19, 19, 0.5);
-        min-height: 100%;
+        background-color:rgba(19, 19, 19, 0.6);
+        min-height: 320px;
         min-width: 100%;
     }
     body {
-        background-image: url('../../Content/img/background.jpg');
+        /*background-image: url('../../Content/img/background.jpg');
         background-size:100% 100%;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat;*/
         width:100%;
         height:100%;
+        overflow-x:hidden;
     }
     html {
       width:100%;
@@ -74,5 +75,8 @@
     }
     .nav.navbar-nav.navbar-right li a {
         color: white;
+    }
+    .navbar {
+        margin-bottom: 0px !important;
     }
 </style>
