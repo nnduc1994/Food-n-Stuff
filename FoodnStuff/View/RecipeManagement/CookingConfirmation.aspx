@@ -1,16 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Shared/Site1.Master" AutoEventWireup="true" CodeBehind="CookingConfirmation.aspx.cs" Inherits="FoodnStuff.View.RecipeManagement.CookingConfirmation" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
+            <div class="banner">
+        <div class="grey-filter">
+            <div class="row">
+                    <div class="container text-center" style="padding-top:60px; color:white; ">
+                         <h3 style="font-size:300%;">Cooking Confirmation</h3>
+                    </div>
+                      <!--end div col-md-7 ( text box and button) -->
+            </div>
+        </div>
+    </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-2 col-md-8 sub-container">
-                <h1>Cooking Confirmation</h1>
-                <hr />
                 <br />
                 <div class="form-group">
-                    <asp:Label ID="lbRecipeName" runat="server" Text="Recipe Name"></asp:Label><br />
-                    TotalPrice: <asp:Label ID="lbRecipePrice" runat="server" Text="Recipe Price"></asp:Label> euros
+                    <asp:Label ID="lbRecipeName" runat="server" Text="Recipe Name" style="font-size:180%; color:#F39353;"></asp:Label><br />
+                    Total Price: <asp:Label ID="lbRecipePrice" runat="server" Text="Recipe Price"></asp:Label> euros
                     <div class="row">
                         <div class="col-md-6">
                             <h3>Recipe Ingredient </h3>
@@ -18,7 +23,7 @@
                               <h3>Reminder </h3>
                             <asp:Label ID="lbRemind" runat="server" Text=""></asp:Label><br />
                             <h3>Total expected cost:</h3>
-                            <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lbTotalCost" runat="server" Text=""></asp:Label> euro(s)
                         </div>
                         <div class="col-md-6">
                             <h3>Available ingredient in Storage </h3>
@@ -32,59 +37,21 @@
                </div> 
         </div>
         <!--end of div sub-container-->       
-    </div>
     <!--end of div row group-->
 </div>
 
                             
 <style>    
-    .container {
-        padding-top: 10%;
-        padding-bottom: 5%;
-    }
-
-    .sub-container {
-        background-color: white;
-        padding-top: 3%;
-        border: 3px solid;
-        border-radius: 30px;
-        padding-left: 3%;
-        padding-bottom: 2%;
-        border-color:#FD7E2D;
-    }
-
-    q {
-        quotes: "«" "»";
-    }
-
-    label{
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size:24px;
-    }
-
-    h1 {
-        font-size: 400%;
-        color: #FD7E2D;
-        font-family: 'Times New Roman', Times, serif;
-    }
-    h2{
-
-    }
-
-    .rating {
-        unicode-bidi: bidi-override;
-        direction: rtl;
-        font-size:24px;
-    }
-    .rating > span {
-        display: inline-block;
-        position: relative;
-        width: 1.1em;
-    }
-    .rating > span:hover:before,
-    .rating > span:hover ~ span:before {
-        content: "\2605";
-        position: absolute;
+           .banner {
+            min-height:220px;
+            min-width:100%;
+            background-size: cover;
+            background-image:url('../../Content/img/banner2.jpg');
+        }
+    .grey-filter {
+               background-color:rgba(19, 19, 19, 0.6);
+        min-height: 220px !important;
+        min-width: 100%;
     }
 </style>
     </asp:Content>

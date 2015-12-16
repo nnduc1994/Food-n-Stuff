@@ -176,7 +176,7 @@ namespace FoodnStuff.Model
             myDatabase.CloseConnection();
 
         }
-        public static List<Recipe> getRecipe(int? recipeID=null, string searchParam = null)
+        public static List<Recipe> getRecipe(int? recipeID=null ,string searchParam = null)
         {
             Database myDatabase = new Database();
             myDatabase.ReturnConnection();
@@ -199,7 +199,7 @@ namespace FoodnStuff.Model
             else if (searchParam == null) {
                 command = "SELECT * FROM Recipe";
             }
-           
+
             OleDbDataReader mainReader = myDatabase.ExcuteQuery(command);
             bool EOF = mainReader.Read();
 
@@ -343,6 +343,22 @@ namespace FoodnStuff.Model
             CategoryList = GetCategory(idList);
             myDatabase.CloseConnection();
             return CategoryList;
+        }
+
+        public static List<int> GetRecipeIDBelongToCategory(int categoryID) {
+            List<int> idList = new List<int>();
+            Database myDatabase = new Database();
+            myDatabase.ReturnConnection();
+            string command = "SELECT * FROM RecipeCategory WHERE CategoryID = "+ categoryID + ";";
+            OleDbDataReader reader = myDatabase.ExcuteQuery(command);
+            bool EOF = reader.Read();
+            while (EOF)
+            {
+                idList.Add(Convert.ToInt32(reader["RecipeID"]));
+                EOF = reader.Read();
+            }
+            myDatabase.CloseConnection();
+            return idList;
         }
     }
     

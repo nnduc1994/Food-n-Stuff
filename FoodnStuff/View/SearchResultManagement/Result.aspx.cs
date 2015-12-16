@@ -36,7 +36,23 @@ namespace FoodnStuff.View.SearchResultManagement
                     queryString = null;
                 }
 
-                recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+                if (Request["hint"] != null) {
+                    recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+                }
+
+                if (Request["CategoryID"] != null && Request["hint"] == null) {
+                    List<int> CategoryIdList = new List<int>();
+                    CategoryIdList = Model.RecipeManagement.GetRecipeIDBelongToCategory(Convert.ToInt16(Request["CategoryID"]));
+                    if (CategoryIdList.Count > 0) {
+                        List<Recipe> subList = new List<Recipe>();
+                        foreach (int i in CategoryIdList) {
+                            subList = Model.RecipeManagement.getRecipe(i, null);
+                            recipeList.Add(subList[0]);
+                        }
+                    }
+                }
+
+
             }
            
             if (IsPostBack)
@@ -52,8 +68,25 @@ namespace FoodnStuff.View.SearchResultManagement
                 {
                     queryString = null;
                 }
-                recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+                if (Request["hint"] != null)
+                {
+                    recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+                }
 
+                if (Request["CategoryID"] != null && Request["hint"] == null)
+                {
+                    List<int> CategoryIdList = new List<int>();
+                    CategoryIdList = Model.RecipeManagement.GetRecipeIDBelongToCategory(Convert.ToInt16(Request["CategoryID"]));
+                    if (CategoryIdList.Count > 0)
+                    {
+                        List<Recipe> subList = new List<Recipe>();
+                        foreach (int i in CategoryIdList)
+                        {
+                            subList = Model.RecipeManagement.getRecipe(i, null);
+                            recipeList.Add(subList[0]);
+                        }
+                    }
+                }
                 if (DropDownList1.SelectedValue == "1")
                 {
                     recipeList = recipeList.OrderByDescending(x => x.Vote).ToList();

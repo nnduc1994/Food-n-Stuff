@@ -87,6 +87,7 @@
             <div class="category wrapper" style="margin-left:0%; margin-right:1%; padding-top:30px;">
                     <%for(int m=0; m < categoriesList.Count; m++) { %>
                         <%row++; if (row == 1) { className = "col-md-8"; } %>
+                        <a href="/View/SearchResultManagement/Result.aspx?CategoryID=<%=categoriesList[m].ID %>">
                         <div class="<%=className %>" >
                             <div class="category" style="background-image:url('<%=categoriesList[m].ImagePath%>')">
                                 <div class="grey-filter3">
@@ -94,6 +95,7 @@
                                 </div>
                             </div>
                         </div>
+                            </a>
                         <% className = "col-md-4"; if (row == 6) { row = 0; } %>
                     <%} %>
             </div>

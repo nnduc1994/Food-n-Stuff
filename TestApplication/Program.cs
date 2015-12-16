@@ -86,6 +86,11 @@ namespace TestApplication
             //    Console.WriteLine(CategoryList[i].ImagePath);
             //}
 
+            List<int> idlist = RecipeManagement.GetRecipeIDBelongToCategory(1);
+            foreach (int i in idlist) {
+                Console.WriteLine(i);
+            }
+            Console.ReadLine();
 
         }
     }
