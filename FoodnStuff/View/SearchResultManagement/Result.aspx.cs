@@ -12,111 +12,64 @@ namespace FoodnStuff.View.SearchResultManagement
 {
     public partial class Result : System.Web.UI.Page
     {
+        public List<Recipe> recipeList = new List<Recipe>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string queryString = "";
-            if (Request["hint"] != null)
-            {
-                queryString = Request["hint"];
-            }
-            else
-            {
-                queryString = null;
-            }
+            if (!IsPostBack) {
+                DropDownList1.Items.Clear();
+                DropDownList1.Items.Add("Sort");
+                DropDownList1.Items[0].Value = "0";
+                DropDownList1.Items.Add("By Rating");
+                DropDownList1.Items[1].Value = "1";
+                DropDownList1.Items.Add("By Duration");
+                DropDownList1.Items[2].Value = "2";
 
-            List<Recipe> recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+                string queryString = "";
 
-            int numberRecordPerRow = 3;
-            int numberRows = recipeList.Count();
-            if (numberRows * numberRecordPerRow < recipeList.Count())
-            {
-                numberRows = numberRows + 1;
-            }
-
-            for (int i = 0; i < numberRows; i++)
-            {
-                HtmlGenericControl row = new HtmlGenericControl("div");
-                row.Attributes.Add("class", "row");
-                for (int j = 0; j < numberRecordPerRow; j++)
+                if (Request["hint"] != null)
                 {
-
-                    if ((i * numberRecordPerRow + j) < recipeList.Count)
-                    {
-                        HtmlGenericControl a = new HtmlGenericControl("a");
-                        a.Attributes.Add("href", "/View/RecipeManagement/RecipeViewer.aspx?RecipeID=" + recipeList[i* numberRecordPerRow+j].ID);
-                        a.Attributes.Add("class", "a-container");
-                        HtmlGenericControl divItem = new HtmlGenericControl("div");
-                        divItem.Attributes.Add("class", "col-md-3 item");
-                        HtmlGenericControl img = new HtmlGenericControl("img");
-                        img.Attributes.Add("class", "thumb thumbnail");
-                        img.Attributes.Add("src", recipeList[i * numberRecordPerRow + j].PicturePath);
-                        divItem.Controls.Add(img);
-                        HtmlGenericControl detailsDiv = new HtmlGenericControl("div");
-                        detailsDiv.Attributes.Add("class", "div-details");
-                        HtmlGenericControl title = new HtmlGenericControl("label");
-                        title.InnerText = recipeList[i * numberRecordPerRow + j].Name;
-                        title.Attributes.Add("class", "recipe-name");
-
-                        //Get vote
-                        HtmlGenericControl voteWrapper = new HtmlGenericControl("div");
-                        HtmlGenericControl vote = new HtmlGenericControl("img");
-                        string imgPath = "/Content/star/" + recipeList[i * numberRecordPerRow + j].Vote.ToString() + ".png";
-                        vote.Attributes.Add("src", imgPath);
-                        vote.Attributes.Add("class", "vote");
-                        voteWrapper.Controls.Add(vote);
-                        detailsDiv.Controls.Add(voteWrapper);
-                        detailsDiv.Controls.Add(title);
-
-                        HtmlGenericControl ingredientText = new HtmlGenericControl("p");
-                        ingredientText.InnerText = "Ingredients";
-                        detailsDiv.Controls.Add(ingredientText);
-
-                        HtmlGenericControl ingredientWrapper = new HtmlGenericControl("div");
-
-                        //If more than 5 ingredients in the ingredient list
-                        if (recipeList[i * numberRecordPerRow + j].IngredientList.Count > 3)
-                        {
-                            for (int u = 0; u < 3; u++)
-                            {
-                                HtmlGenericControl ingredientParagraph = new HtmlGenericControl("p");
-                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " " + recipeList[i * numberRecordPerRow +j].IngredientList[u].Unit + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
-                                ingredientWrapper.Controls.Add(ingredientParagraph);
-
-                                if (u == 2 && u < recipeList[i * numberRecordPerRow + j].IngredientList.Count)
-                                {
-                                    HtmlGenericControl threeDots = new HtmlGenericControl("p");
-                                    threeDots.InnerText = "Read More";
-                                    ingredientWrapper.Controls.Add(threeDots);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for (int u = 0; u < recipeList[i * numberRecordPerRow + j].IngredientList.Count; u++)
-                            {
-                                HtmlGenericControl ingredientParagraph = new HtmlGenericControl("p");
-                                ingredientParagraph.InnerText = recipeList[i * numberRecordPerRow + j].IngredientList[u].Amount + " "+ recipeList[i * numberRecordPerRow + j].IngredientList[u].Unit + " " + recipeList[i * numberRecordPerRow + j].IngredientList[u].Name;
-                                ingredientWrapper.Controls.Add(ingredientParagraph);
-                            }
-                        }
-
-                            detailsDiv.Controls.Add(ingredientWrapper);
-
-                            HtmlGenericControl CreatedByText = new HtmlGenericControl("p");
-                            CreatedByText.InnerText = "Created by " + recipeList[i * numberRecordPerRow + j].AuthorName;
-                            detailsDiv.Controls.Add(CreatedByText);
-
-                            divItem.Controls.Add(detailsDiv);
-                            a.Controls.Add(divItem);
-
-                            row.Controls.Add(a);
-                        }
-                    }
-
-                    wrapper.Controls.Add(row);
+                    queryString = Request["hint"];
+                    Label1.Text = queryString;
+                }
+                else
+                {
+                    queryString = null;
                 }
 
+                recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+            }
+           
+            if (IsPostBack)
+            {
+                string queryString = "";
+
+                if (Request["hint"] != null)
+                {
+                    queryString = Request["hint"];
+                    Label1.Text = queryString;
+                }
+                else
+                {
+                    queryString = null;
+                }
+                recipeList = Model.RecipeManagement.getRecipe(null, queryString);
+
+                if (DropDownList1.SelectedValue == "1")
+                {
+                    recipeList = recipeList.OrderByDescending(x => x.Vote).ToList();
+                }
+                else if(DropDownList1.SelectedValue == "2") {
+                    recipeList = recipeList.OrderBy(x => x.Duration).ToList();
+                }
 
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string hint = TextBox1.Text;
+            Response.Redirect("/View/SearchResultManagement/Result.aspx?hint=" + hint);
+
+        }
+    }
     }
